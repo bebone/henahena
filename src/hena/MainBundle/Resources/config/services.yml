@@ -1,0 +1,4 @@
+services:
+#    hena_main.example:
+#        class: hena\MainBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
