@@ -1,5 +1,5 @@
 <?php
-namespace hena\AppBundle\Controller;
+namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,10 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $number = mt_rand(0, 100);
 
-        return $this->render('accueil.html.twig', array(
-            'number' => $number,
-        ));
+        return $this->render(':default:index.html.twig');
     }
 }
