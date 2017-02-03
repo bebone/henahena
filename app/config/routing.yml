@@ -1,7 +1,7 @@
 hena_user:
-    resource: "@henaUserBundle/Controller/"
+    resource: "@UserBundle/Controller/"
     type:     annotation
-    prefix:   /
+
 
 app:
     resource: "@AppBundle/Controller/"

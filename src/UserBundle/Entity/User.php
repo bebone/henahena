@@ -1,6 +1,6 @@
 <?php
 
-namespace hena\UserBundle\Entity;
+namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
