@@ -1,6 +1,6 @@
 <?php
 
-namespace hena\UserBundle\Repository;
+namespace UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
