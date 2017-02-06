@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -23,7 +24,6 @@ class User extends BaseUser
     protected $id;
 
 
-
     /**
      * @var string
      *
@@ -37,7 +37,6 @@ class User extends BaseUser
      * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
-
 
 
     /**
@@ -55,19 +54,42 @@ class User extends BaseUser
     private $sexe;
 
 
+    /**
+     * @var ArrayCollection $contenuAnnonces
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuAnnonce", mappedBy="user")
+     */
+    private $contenuAnnonces;
+
+
+    /**
+     * @var ArrayCollection $contenuPages
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuPage", mappedBy="user")
+     */
+    private $contenuPages;
+
+
+    /**
+     * @var ArrayCollection $evenementsCrees
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evenement", mappedBy="user")
+     */
+    private $evenementsCrees;
+
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->contenuAnnonces = new ArrayCollection();
+        $this->contenuPages = new ArrayCollection();
+        $this->evenementsCrees = new ArrayCollection();
         parent::__construct();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +112,7 @@ class User extends BaseUser
     /**
      * Get pseudo
      *
-     * @return string 
+     * @return string
      */
     public function getPseudo()
     {
@@ -113,7 +135,7 @@ class User extends BaseUser
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -136,7 +158,7 @@ class User extends BaseUser
     /**
      * Get prenom
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
@@ -160,7 +182,7 @@ class User extends BaseUser
     /**
      * Get dateNaissance
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateNaissance()
     {
@@ -183,12 +205,119 @@ class User extends BaseUser
     /**
      * Get sexe
      *
-     * @return string 
+     * @return string
      */
     public function getSexe()
     {
         return $this->sexe;
     }
 
+
+    /**
+     * Add annonce
+     *
+     * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
+     *
+     * @return User
+     */
+    public function addContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
+    {
+        $this->$contenuAnnonces[] = $contenuAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonce
+     *
+     * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
+     */
+    public function removeContenuAnnonce(\AppBundle\Entity\annonce $contenuAnnonce)
+    {
+        $this->contenuAnnonces->removeElement($contenuAnnonce);
+    }
+
+    /**
+     * Get annonces
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContenuAnnonces()
+    {
+        return $this->contenuAnnonces;
+    }
+
+
+
+
+    /**
+     * Add annonce
+     *
+     * @param \AppBundle\Entity\contenuPage $contenuPage
+     *
+     * @return User
+     */
+    public function addContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
+    {
+        $this->$contenuPages[] = $contenuPage;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonce
+     *
+     * @param \AppBundle\Entity\contenuPage $contenuPage
+     */
+    public function removeContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
+    {
+        $this->contenuPages->removeElement($contenuPage);
+    }
+
+    /**
+     * Get annonces
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContenuPages()
+    {
+        return $this->contenuPages;
+    }
+
+
+
+    /**
+     * Add evenement
+     *
+     * @param \AppBundle\Entity\Evnemement $evenement
+     *
+     * @return User
+     */
+    public function addEvenement(\AppBundle\Entity\Evenement $evenement)
+    {
+        $this->evenementsCrees[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement
+     *
+     * @param \AppBundle\Entity\Evenement $evenement
+     */
+    public function removeEvenement(\AppBundle\Entity\Evenement $evenement)
+    {
+        $this->evenementsCrees->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenementsCrees;
+    }
 
 }
