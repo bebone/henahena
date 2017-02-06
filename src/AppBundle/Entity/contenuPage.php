@@ -31,9 +31,9 @@ class contenuPage
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateModification", type="datetime")
+     * @ORM\Column(name="dateModif", type="datetime")
      */
-    private $dateModification;
+    private $dateModif;
 
 
     /**
@@ -78,27 +78,27 @@ class contenuPage
     }
 
     /**
-     * Set dateModification
+     * Set dateModif
      *
      * @param \DateTime $dateModification
      *
      * @return contenuPage
      */
-    public function setDateModification($dateModification)
+    public function setDateModification($dateModif)
     {
-        $this->dateModification = $dateModification;
+        $this->dateModif = $dateModif;
 
         return $this;
     }
 
     /**
-     * Get dateModification
+     * Get dateModif
      *
      * @return \DateTime
      */
-    public function getDateModification()
+    public function getDateModif()
     {
-        return $this->dateModification;
+        return $this->dateModif;
     }
 
     /**
