@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
-        <title>{% block title %}symblog{% endblock %} - symblog</title>
+        <title>{% block title %}symblog{% endblock %} - bonplans</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -25,39 +25,8 @@
    
     </head>
     <body>
+    cccccccc
+    
 
-        <section id="wrapper">
-            <header id="header">
-                <div class="top">
-                    {% block navigation %}
-                        <nav>
-                            <ul class="navigation">
-                                <li><a href="#">Page d'accueil</a></li>
-                                <li><a href="{{ path('Blog_logement') }}">Logement</a></li>
-                                <li><a href="{{ path('bonsplans') }}">Bons Plans</a></li>
-                                <li><a href="#">F.A.Q.</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </nav>
-                    {% endblock %}
-                </div>
-              
-            </header>
-
-            <section class="main-col">
-                {% block body %}{% endblock %}
-            </section>
-            <aside class="sidebar">
-                {% block sidebar %}{% endblock %}
-            </aside>
-
-            <div id="footer">
-                {% block footer %}
-                    HenaHena - le site pour les étudiants
-                {% endblock %}
-            </div>
-        </section>
-
-        {% block javascripts %}{% endblock %}
-    </body>
+</body>
 </html>
