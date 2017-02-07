@@ -70,3 +70,13 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: UserBundle\Entity\User
+    registration:
+        form:
+            type: user_registration
+
+services:
+   user_registration:
+      class: UserBundle\Form\Type\RegistrationFormType
+      arguments: [%fos_user.model.user.class%]
+      tags:
+         -  { name: form.type }
