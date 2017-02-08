@@ -44,6 +44,13 @@ class Evenement
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Lieu", inversedBy="evenementsLieu")
+     *
+     */
+    private $lieu; //événements à ...
+
+
+    /**
      * @var ArrayCollection $participants
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participe", mappedBy="evenement")
      */
@@ -171,5 +178,29 @@ class Evenement
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Set lieu
+     *
+     * @param \UserBundle\Entity\User $lieu
+     *
+     * @return Evenement
+     */
+    public function setLieu(\UserBundle\Entity\User $lieu = null)
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * Get lieu
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
     }
 }

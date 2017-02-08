@@ -44,6 +44,13 @@ class Evenement
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\Lieu", inversedBy="evenementsLieu")
+     *
+     */
+    private $lieu; //événements à ...
+
+
+    /**
      * @var ArrayCollection $participants
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participe", mappedBy="evenement")
      */
@@ -131,5 +138,69 @@ class Evenement
     {
         return $this->user;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add participant
+     *
+     * @param \AppBundle\Entity\Participe $participant
+     *
+     * @return Evenement
+     */
+    public function addParticipant(\AppBundle\Entity\Participe $participant)
+    {
+        $this->participants[] = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Remove participant
+     *
+     * @param \AppBundle\Entity\Participe $participant
+     */
+    public function removeParticipant(\AppBundle\Entity\Participe $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    /**
+     * Set lieu
+     *
+     * @param \UserBundle\Entity\User $lieu
+     *
+     * @return Evenement
+     */
+    public function setLieu(\UserBundle\Entity\User $lieu = null)
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * Get lieu
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
+    }
+}
