@@ -85,11 +85,11 @@ body {
 /* Portfolio */
 
 .portfolio {
-    padding: 50px 0;
+    padding: 10px 0;
 }
 
 .portfolio-item {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .img-portfolio {
@@ -98,6 +98,7 @@ body {
 
 .img-portfolio:hover {
     opacity: 0.8;
+    color: blue;
 }
 
 /* Custom Horizontal Rule */
@@ -235,23 +236,6 @@ hr.small {
     -o-background-size: cover;
 }
 
-/* Portfolio */
-
-.portfolio {
-    padding: 50px 0;
-}
-
-.portfolio-item {
-    margin-bottom: 30px;
-}
-
-.img-portfolio {
-    margin: 0 auto;
-}
-
-.img-portfolio:hover {
-    opacity: 0.8;
-}
 
 /* Call to Action */
 
