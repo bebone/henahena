@@ -37,7 +37,7 @@ class Participe
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User",cascade={"persist"}, inversedBy="participations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

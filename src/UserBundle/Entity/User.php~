@@ -90,7 +90,6 @@ class User extends BaseUser
         $this->contenuAnnonces = new ArrayCollection();
         $this->contenuPages = new ArrayCollection();
         $this->evenementsCrees = new ArrayCollection();
-        $this->participations = new ArrayCollection();
         parent::__construct();
     }
 
@@ -328,72 +327,4 @@ class User extends BaseUser
         return $this->evenementsCrees;
     }
 
-
-    /**
-     * Add evenementsCree
-     *
-     * @param \AppBundle\Entity\Evenement $evenementsCree
-     *
-     * @return User
-     */
-    public function addEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
-    {
-        $this->evenementsCrees[] = $evenementsCree;
-
-        return $this;
-    }
-
-    /**
-     * Remove evenementsCree
-     *
-     * @param \AppBundle\Entity\Evenement $evenementsCree
-     */
-    public function removeEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
-    {
-        $this->evenementsCrees->removeElement($evenementsCree);
-    }
-
-    /**
-     * Get evenementsCrees
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEvenementsCrees()
-    {
-        return $this->evenementsCrees;
-    }
-
-    /**
-     * Add participation
-     *
-     * @param \AppBundle\Entity\Participe $participation
-     *
-     * @return User
-     */
-    public function addParticipation(\AppBundle\Entity\Participe $participation)
-    {
-        $this->participations[] = $participation;
-
-        return $this;
-    }
-
-    /**
-     * Remove participation
-     *
-     * @param \AppBundle\Entity\Participe $participation
-     */
-    public function removeParticipation(\AppBundle\Entity\Participe $participation)
-    {
-        $this->participations->removeElement($participation);
-    }
-
-    /**
-     * Get participations
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParticipations()
-    {
-        return $this->participations;
-    }
 }

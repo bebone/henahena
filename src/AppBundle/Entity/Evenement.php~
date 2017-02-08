@@ -131,45 +131,5 @@ class Evenement
     {
         return $this->user;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add participant
-     *
-     * @param \AppBundle\Entity\Participe $participant
-     *
-     * @return Evenement
-     */
-    public function addParticipant(\AppBundle\Entity\Participe $participant)
-    {
-        $this->participants[] = $participant;
-
-        return $this;
-    }
-
-    /**
-     * Remove participant
-     *
-     * @param \AppBundle\Entity\Participe $participant
-     */
-    public function removeParticipant(\AppBundle\Entity\Participe $participant)
-    {
-        $this->participants->removeElement($participant);
-    }
-
-    /**
-     * Get participants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParticipants()
-    {
-        return $this->participants;
-    }
 }
+

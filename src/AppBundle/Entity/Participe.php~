@@ -104,4 +104,28 @@ class Participe
     {
         return $this->evenement;
     }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Participe
+     */
+    public function setUser(\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
