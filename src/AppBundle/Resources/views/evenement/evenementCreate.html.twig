@@ -1,0 +1,17 @@
+<form action="{{ path("evenement_create")}}" method="post" {{ form_enctype(form) }}>
+
+    <div>
+        {{ form_errors(form.nom) }}
+        {{ form_label(form.nom) }}
+        {{ form_widget(form.nom) }}
+    </div>
+    <div>
+        {{ form_errors(form.dateHeure) }}
+        {{ form_label(form.dateHeure) }}
+        {{ form_widget(form.dateHeure) }}
+    </div>
+
+
+    {{ form_rest(form) }}
+    <input type="submit" id="submit" value="" name="submit" />
+</form>
