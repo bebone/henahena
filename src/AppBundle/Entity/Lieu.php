@@ -128,10 +128,11 @@ class Lieu
     public function getLieux()
     {
         //On déclare notre tableau avec l'ensemble des données GrandLyon
-        $url = "https://download.data.grandlyon.com/ws/rdata/sit_sitra.sittourisme/all.json";
+        $url = __DIR__."/data/all.json";
+
         $contents = file_get_contents($url);
         $contents = utf8_encode($contents);
-        $this->lieux = json_decode(json_encode($contents), true);
+        $this->lieux = json_decode($contents, true);
         return $this->lieux;
     }
 

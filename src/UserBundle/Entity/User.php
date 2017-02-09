@@ -242,7 +242,7 @@ class User extends BaseUser
      *
      * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
      */
-    public function removeContenuAnnonce(\AppBundle\Entity\annonce $contenuAnnonce)
+    public function removeContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
     {
         $this->contenuAnnonces->removeElement($contenuAnnonce);
     }

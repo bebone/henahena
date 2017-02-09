@@ -28,6 +28,15 @@ class Evenement
      */
     private $nom;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="text")
+     */
+    private $contenu; //On considère que l'utilisateur va mettre beaucoup de texte
+
+
     /**
      * @var \DateTime
      *
@@ -202,5 +211,29 @@ class Evenement
     public function getLieu()
     {
         return $this->lieu;
+    }
+
+    /**
+     * Set contenu
+     *
+     * @param string $contenu
+     *
+     * @return Evenement
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    /**
+     * Get contenu
+     *
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
     }
 }
