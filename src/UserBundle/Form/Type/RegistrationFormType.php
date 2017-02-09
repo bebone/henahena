@@ -16,7 +16,8 @@ class RegistrationFormType extends BaseType
             ->add('nom', null, array('attr' => array('class' => 'inputText')))
             ->add('prenom', null, array('attr' => array('class' => 'inputText')))
             ->add('dateNaissance', null, array('attr' => array('class' => 'inputText')))
-            ->add('sexe', null, array('attr' => array('class' => 'inputText')));
+            ->add('sexe', null, array('attr' => array('class' => 'inputText')))
+            ->remove('username');
 
     }
 

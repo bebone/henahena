@@ -230,9 +230,11 @@ class User extends BaseUser
      */
     public function addContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
     {
-        $this->$contenuAnnonces[] = $contenuAnnonce;
-
-        return $this;
+        if (! $this->contenuAnnonces->contains($contenuAnnonce)) {
+            $contenuAnnonce->setUser($this);
+            $this->contenuAnnonces->add($contenuAnnonce);
+        }
+        return $this->contenuAnnonces;
     }
 
     /**
@@ -267,9 +269,11 @@ class User extends BaseUser
      */
     public function addContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
     {
-        $this->$contenuPages[] = $contenuPage;
-
-        return $this;
+        if (! $this->contenuPages->contains($contenuPage)) {
+            $contenuPage->setUser($this);
+            $this->contenuPages->add($contenuPage);
+        }
+        return $this->contenuPages;
     }
 
     /**
@@ -395,5 +399,10 @@ class User extends BaseUser
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+    public function setEmail($email){
+        parent::setEmail($email);
+        $this->setUsername($email);
     }
 }

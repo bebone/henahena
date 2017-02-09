@@ -5,7 +5,7 @@ security:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         main:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
     encoders:
         UserBundle\Entity\User: sha512
 
