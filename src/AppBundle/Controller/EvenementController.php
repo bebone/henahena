@@ -34,6 +34,7 @@ class EvenementController extends Controller
 
 
     /**
+     * @Secure(roles="ROLE_USER")
      * @Route("/evenement/create", name="evenement_create")
      */
     public function evenementCreateAction(Request $request) //Création d'un événement

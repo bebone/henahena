@@ -5,6 +5,8 @@ namespace UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
 class RegistrationFormType extends BaseType
@@ -15,7 +17,14 @@ class RegistrationFormType extends BaseType
         $builder
             ->add('nom', null, array('attr' => array('class' => 'inputText')))
             ->add('prenom', null, array('attr' => array('class' => 'inputText')))
-            ->add('dateNaissance', null, array('attr' => array('class' => 'inputText')))
+            ->add('statut', ChoiceType::class, array(
+                'choices'  => array(
+                    'Étudiant' => "Étudiant(e)",
+                    'Salarié' => "Salarié(e)",
+                    "En recherche d'emploi" => "En recherche d'emploi",
+                    'Autre' => "Autre",
+                )))
+            ->add('dateNaissance', BirthdayType::class, array('attr' => array('class' => 'inputText')))
             ->add('sexe', null, array('attr' => array('class' => 'inputText')))
             ->remove('username');
 

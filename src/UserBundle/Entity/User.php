@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * User
@@ -37,6 +38,14 @@ class User extends BaseUser
      * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=255, nullable=true)
+     */
+    private $statut;
 
 
     /**
@@ -401,8 +410,46 @@ class User extends BaseUser
         return $this->participations;
     }
 
+
+    public function getAge() //On calcule à partir de la date de naissance
+    {
+        $date=$this->getDateNaissance();
+        $date_actuelle=date('Y');
+        $age = $date_actuelle - $date->format('Y');
+        if(date('n')>=$date->format('n') && date('j')>=$date->format('j')) {
+            return $age;
+        }
+            else {
+                return $age-1;
+            }
+    }
+
     public function setEmail($email){
         parent::setEmail($email);
         $this->setUsername($email);
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     *
+     * @return User
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }

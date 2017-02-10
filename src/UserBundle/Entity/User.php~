@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * User
@@ -37,6 +38,14 @@ class User extends BaseUser
      * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=255, nullable=true)
+     */
+    private $statut;
 
 
     /**
@@ -90,6 +99,7 @@ class User extends BaseUser
         $this->contenuAnnonces = new ArrayCollection();
         $this->contenuPages = new ArrayCollection();
         $this->evenementsCrees = new ArrayCollection();
+        $this->participations = new ArrayCollection();
         parent::__construct();
     }
 
@@ -229,9 +239,11 @@ class User extends BaseUser
      */
     public function addContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
     {
-        $this->$contenuAnnonces[] = $contenuAnnonce;
-
-        return $this;
+        if (! $this->contenuAnnonces->contains($contenuAnnonce)) {
+            $contenuAnnonce->setUser($this);
+            $this->contenuAnnonces->add($contenuAnnonce);
+        }
+        return $this->contenuAnnonces;
     }
 
     /**
@@ -239,7 +251,7 @@ class User extends BaseUser
      *
      * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
      */
-    public function removeContenuAnnonce(\AppBundle\Entity\annonce $contenuAnnonce)
+    public function removeContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
     {
         $this->contenuAnnonces->removeElement($contenuAnnonce);
     }
@@ -266,9 +278,11 @@ class User extends BaseUser
      */
     public function addContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
     {
-        $this->$contenuPages[] = $contenuPage;
-
-        return $this;
+        if (! $this->contenuPages->contains($contenuPage)) {
+            $contenuPage->setUser($this);
+            $this->contenuPages->add($contenuPage);
+        }
+        return $this->contenuPages;
     }
 
     /**
@@ -327,4 +341,91 @@ class User extends BaseUser
         return $this->evenementsCrees;
     }
 
+
+    /**
+     * Add evenementsCree
+     *
+     * @param \AppBundle\Entity\Evenement $evenementsCree
+     *
+     * @return User
+     */
+    public function addEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
+    {
+        $this->evenementsCrees[] = $evenementsCree;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenementsCree
+     *
+     * @param \AppBundle\Entity\Evenement $evenementsCree
+     */
+    public function removeEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
+    {
+        $this->evenementsCrees->removeElement($evenementsCree);
+    }
+
+    /**
+     * Get evenementsCrees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenementsCrees()
+    {
+        return $this->evenementsCrees;
+    }
+
+    /**
+     * Add participation
+     *
+     * @param \AppBundle\Entity\Participe $participation
+     *
+     * @return User
+     */
+    public function addParticipation(\AppBundle\Entity\Participe $participation)
+    {
+        $this->participations[] = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Remove participation
+     *
+     * @param \AppBundle\Entity\Participe $participation
+     */
+    public function removeParticipation(\AppBundle\Entity\Participe $participation)
+    {
+        $this->participations->removeElement($participation);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
+    }
+
+
+    public function getAge() //On calcule à partir de la date de naissance
+    {
+        $date=$this->getDateNaissance();
+        $date_actuelle=date('Y');
+        $age = $date_actuelle - $date->format('Y');
+        if(date('n')>=$date->format('n') && date('j')>=$date->format('j')) {
+            return $age;
+        }
+            else {
+                return $age-1;
+            }
+    }
+
+    public function setEmail($email){
+        parent::setEmail($email);
+        $this->setUsername($email);
+    }
 }

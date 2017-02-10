@@ -6,6 +6,11 @@
         {{ form_widget(form.nom) }}
     </div>
     <div>
+        {{ form_errors(form.contenu) }}
+        {{ form_label(form.contenu) }}
+        {{ form_widget(form.contenu) }}
+    </div>
+    <div>
         {{ form_errors(form.dateHeure) }}
         {{ form_label(form.dateHeure) }}
         {{ form_widget(form.dateHeure) }}

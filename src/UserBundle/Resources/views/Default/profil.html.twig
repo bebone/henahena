@@ -1,0 +1,38 @@
+{#Il nous faut le layout ! #}
+<body>
+<h1>{{ user.prenom }} {{ user.nom }}</h1>
+<h2>{{ user.statut }}</h2>
+{{ user.sexe }} {{ user.Age }} ans
+
+
+<div>
+    Mes évenements créés
+    <ul>
+        {% for evenementCree in user.evenementsCrees %}
+            <li><a href="{{ path('evenement_view',{'id': evenementCree.id }) }}">{{ evenementCree.nom }}
+                    - {{ evenementCree.dateHeure|date }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    Mes participations aux évenements
+    {% if user.participations is empty %}
+        Aucune participation à afficher.
+    {% else %}
+        {% for participation in user.participations %}
+            {{ participation.evenement.nom }}
+        {% endfor %}
+    {% endif %}
+</div>
+<div>
+    Mes annonces
+    {% if user.contenuAnnonces is empty %}
+        Aucune annonce à afficher.
+    {% else %}
+        {% for annonce in user.contenuAnnonces %}
+            {{ annonce.annonce.nom }}
+        {% endfor %}
+    {% endif %}
+
+</div>
+</body>
