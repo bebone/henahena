@@ -73,6 +73,9 @@ fos_user:
     registration:
         form:
             type: user_registration
+    from_email:
+            address: henahena@example.com
+            sender_name: Hena
 
 services:
    user_registration:

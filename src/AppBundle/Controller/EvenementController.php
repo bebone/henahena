@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,6 +21,7 @@ use AppBundle\Form\Type\EvenementType;
 class EvenementController extends Controller
 {
     /**
+     * @Secure(roles="ROLE_USER")
      * @Route("/evenement/{id}", name="evenement_view", requirements={"id": "\d+"})
      */
     public function evenementAction($id) //Affichage d'un évenement

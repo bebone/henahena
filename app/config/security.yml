@@ -10,6 +10,10 @@ security:
         UserBundle\Entity\User: sha512
 
 
+
+
+
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
