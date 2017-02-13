@@ -17,6 +17,7 @@ class EvenementType extends AbstractType {
             ->add('nom')
             ->add('contenu')
             ->add('dateHeure')
+            ->add('lieu')
 
         ;
     }

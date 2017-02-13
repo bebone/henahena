@@ -1,1 +1,8 @@
-{{ evenement.id }}
+{% extends "::layout.html.twig" %}
+{%  block title %}
+    {{ parent() }} - {{ evenement.nom}}
+{% endblock %}
+{%  block body %}
+{{ evenement.id }} {{ evenement.nom}}
+    {{ evenement.user.prenom }}
+{%  endblock %}

@@ -2,10 +2,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
-        <title>{% block title %}symblog{% endblock %} - symblog</title>
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <title>{% block title %}HenaHena{% endblock %}</title>
+
         {% block stylesheets %}
             <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
             <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
@@ -33,7 +31,7 @@
                         <nav>
                             <ul class="navigation">
                                 <li><a href="#">Page d'accueil</a></li>
-                                <li><a href="{{ path('Blog_logement') }}">Logement</a></li>
+                                <li><a href="{{ path('logements') }}">Logement</a></li>
                                 <li><a href="{{ path('bonsplans') }}">Bons Plans</a></li>
                                 <li><a href="#">F.A.Q.</a></li>
                                 <li><a href="#">Contact</a></li>

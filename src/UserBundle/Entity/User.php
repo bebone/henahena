@@ -65,14 +65,14 @@ class User extends BaseUser
 
     /**
      * @var ArrayCollection $contenuAnnonces
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuAnnonce", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="user")
      */
     private $contenuAnnonces;
 
 
     /**
      * @var ArrayCollection $contenuPages
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuPage", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Page", mappedBy="user")
      */
     private $contenuPages;
 
