@@ -55,7 +55,7 @@ class Page
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="contenuPages")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="pages")
      *
      */
     private $user;

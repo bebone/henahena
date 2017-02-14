@@ -26,10 +26,10 @@
 </div>
 <div>
     Mes annonces
-    {% if user.contenuAnnonces is empty %}
+    {% if user.annonces is empty %}
         Aucune annonce à afficher.
     {% else %}
-        {% for annonce in user.contenuAnnonces %}
+        {% for annonce in user.annonces %}
             {{ annonce.annonce.nom }}
         {% endfor %}
     {% endif %}

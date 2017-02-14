@@ -64,17 +64,17 @@ class User extends BaseUser
 
 
     /**
-     * @var ArrayCollection $contenuAnnonces
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuAnnonce", mappedBy="user")
+     * @var ArrayCollection $annonces
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="user")
      */
-    private $contenuAnnonces;
+    private $annonces;
 
 
     /**
-     * @var ArrayCollection $contenuPages
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\contenuPage", mappedBy="user")
+     * @var ArrayCollection $pages
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Page", mappedBy="user")
      */
-    private $contenuPages;
+    private $pages;
 
 
     /**
@@ -427,5 +427,29 @@ class User extends BaseUser
     public function setEmail($email){
         parent::setEmail($email);
         $this->setUsername($email);
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     *
+     * @return User
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }

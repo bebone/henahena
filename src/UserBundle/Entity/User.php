@@ -64,17 +64,17 @@ class User extends BaseUser
 
 
     /**
-     * @var ArrayCollection $contenuAnnonces
+     * @var ArrayCollection $annonces
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="user")
      */
-    private $contenuAnnonces;
+    private $annonces;
 
 
     /**
-     * @var ArrayCollection $contenuPages
+     * @var ArrayCollection $pages
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Page", mappedBy="user")
      */
-    private $contenuPages;
+    private $pages;
 
 
     /**
@@ -96,8 +96,8 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        $this->contenuAnnonces = new ArrayCollection();
-        $this->contenuPages = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
+        $this->pages = new ArrayCollection();
         $this->evenementsCrees = new ArrayCollection();
         $this->participations = new ArrayCollection();
         parent::__construct();
@@ -451,5 +451,73 @@ class User extends BaseUser
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Add annonce
+     *
+     * @param \AppBundle\Entity\Annonce $annonce
+     *
+     * @return User
+     */
+    public function addAnnonce(\AppBundle\Entity\Annonce $annonce)
+    {
+        $this->annonces[] = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonce
+     *
+     * @param \AppBundle\Entity\Annonce $annonce
+     */
+    public function removeAnnonce(\AppBundle\Entity\Annonce $annonce)
+    {
+        $this->annonces->removeElement($annonce);
+    }
+
+    /**
+     * Get annonces
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnnonces()
+    {
+        return $this->annonces;
+    }
+
+    /**
+     * Add page
+     *
+     * @param \AppBundle\Entity\Page $page
+     *
+     * @return User
+     */
+    public function addPage(\AppBundle\Entity\Page $page)
+    {
+        $this->pages[] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Remove page
+     *
+     * @param \AppBundle\Entity\Page $page
+     */
+    public function removePage(\AppBundle\Entity\Page $page)
+    {
+        $this->pages->removeElement($page);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
     }
 }
