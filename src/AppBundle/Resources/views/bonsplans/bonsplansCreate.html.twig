@@ -1,10 +1,15 @@
-<form action="{{ path("page_create")}}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path("bonsplans_create")}}" method="post" {{ form_enctype(form) }}>
 
 
     <div>
         {{ form_errors(form.titre) }}
         {{ form_label(form.titre) }}
         {{ form_widget(form.titre) }}
+    </div>
+    <div>
+        {{ form_errors(form.categorie) }}
+        {{ form_label(form.categorie) }}
+        {{ form_widget(form.categorie) }}
     </div>
     <div>
         {{ form_errors(form.contenu) }}
@@ -17,8 +22,3 @@
     {{ form_rest(form) }}
     <input type="submit" id="submit" value="VALIDER" name="submit" />
 </form>
-<script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
-
-<script>
-    CKEDITOR.replace( 'page_edit[contenu]' );
-</script>

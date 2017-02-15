@@ -21,6 +21,15 @@ class Annonce
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="text")
+     */
+    private $titre;
+
+
     /**
      * @var string
      *
@@ -37,7 +46,7 @@ class Annonce
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="contenuAnnonces")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="annonces")
      *
      */
     private $user;
@@ -131,5 +140,28 @@ class Annonce
     {
         return $this->dateModif;
     }
-}
 
+    /**
+     * Set categorie
+     *
+     * @param \AppBundle\Entity\Categorie $categorie
+     *
+     * @return Annonce
+     */
+    public function setCategorie(\AppBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \AppBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+}

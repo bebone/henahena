@@ -30,10 +30,10 @@ class Categorie
 
 
     /**
-     * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="categorie")
+     * @var ArrayCollection $bonsplans
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Bonplan", mappedBy="categorie")
      */
-    private $annonces;
+    private $bonsplans;
 
 
     /**
@@ -74,40 +74,40 @@ class Categorie
      */
     public function __construct()
     {
-        $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->bonsplans = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add annonce
+     * Add bon plan
      *
-     * @param \AppBundle\Entity\Evenement $annonce
+     * @param \AppBundle\Entity\Bonplan $bonplan
      *
      * @return Categorie
      */
-    public function addAnnonce(\AppBundle\Entity\Evenement $annonce)
+    public function addBonplan(\AppBundle\Entity\Bonplan $bonplan)
     {
-        $this->annonces[] = $annonce;
+        $this->bonsplans[] = $bonplan;
 
         return $this;
     }
 
     /**
-     * Remove annonce
+     * Remove bon plan
      *
-     * @param \AppBundle\Entity\Evenement $annonce
+     * @param \AppBundle\Entity\Bonplan $bonplan
      */
-    public function removeAnnonce(\AppBundle\Entity\Evenement $annonce)
+    public function removeBonsplans(\AppBundle\Entity\Bonplan $bonplan)
     {
-        $this->annonces->removeElement($annonce);
+        $this->bonsplans->removeElement($bonplan);
     }
 
     /**
-     * Get annonces
+     * Get bons plans
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAnnonces()
+    public function getBonsplans()
     {
-        return $this->annonces;
+        return $this->bonsplans;
     }
 }

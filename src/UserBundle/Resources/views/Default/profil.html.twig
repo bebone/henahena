@@ -26,11 +26,11 @@
 </div>
 <div>
     Mes annonces
-    {% if user.annonces is empty %}
-        Aucune annonce à afficher.
+    {% if user.bonsplans is empty %}
+        Aucun bon plan à afficher.
     {% else %}
-        {% for annonce in user.annonces %}
-            {{ annonce.annonce.nom }}
+        {% for bonplan in user.bonsplans %}
+            {{ bonplan.titre }}
         {% endfor %}
     {% endif %}
 

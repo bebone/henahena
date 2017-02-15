@@ -52,7 +52,7 @@ class EvenementController extends Controller
             $em->persist($evenement);
             $em->flush();
             $this->get('session')->getFlashBag()->add('info', "L'évenement a bien été ajouté");
-            return $this->redirect($this->generateUrl('evenement_view', array('id' => $evenement->getId())));;
+            return $this->redirect($this->generateUrl('evenement_view', array('id' => $evenement->getId())));
         }
 
         return $this->render('AppBundle:evenement:evenementCreate.html.twig', array(

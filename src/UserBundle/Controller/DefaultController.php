@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use UserBundle\Entity\User;
 
 class DefaultController extends Controller
@@ -19,4 +20,6 @@ class DefaultController extends Controller
         $user = $this->getUser();
         return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user));
     }
+
+
 }

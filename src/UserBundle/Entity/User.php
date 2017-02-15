@@ -64,10 +64,10 @@ class User extends BaseUser
 
 
     /**
-     * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annonce", mappedBy="user")
+     * @var ArrayCollection $bonsplans
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Bonplan", mappedBy="user")
      */
-    private $annonces;
+    private $bonsplans;
 
 
     /**
@@ -96,7 +96,7 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        $this->annonces = new ArrayCollection();
+        $this->bonsplans = new ArrayCollection();
         $this->pages = new ArrayCollection();
         $this->evenementsCrees = new ArrayCollection();
         $this->participations = new ArrayCollection();
@@ -231,78 +231,79 @@ class User extends BaseUser
 
 
     /**
-     * Add annonce
+     * Add bonplan
      *
-     * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
+     * @param \AppBundle\Entity\Bonplan $bonplan
      *
      * @return User
      */
-    public function addContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
+    public function addBonplan(\AppBundle\Entity\Bonplan $bonplan)
     {
-        if (! $this->contenuAnnonces->contains($contenuAnnonce)) {
-            $contenuAnnonce->setUser($this);
-            $this->contenuAnnonces->add($contenuAnnonce);
+        if (! $this->bonsplans->contains($bonplan)) {
+            $bonplan->setUser($this);
+            $this->bonsplans->add($bonplan);
         }
-        return $this->contenuAnnonces;
+        return $this->bonplans;
+    }
+
+    /**
+     * Remove bonplan
+     *
+     * @param \AppBundle\Entity\Bonplan $bonplan
+     */
+    public function removeBonplan(\AppBundle\Entity\Bonplan $bonplan)
+    {
+        $this->bonsplans->removeElement($bonplan);
+    }
+
+    /**
+     * Get bonsplans
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBonsplans()
+    {
+        return $this->bonsplans;
+    }
+
+
+
+
+    /**
+     * Add Page
+     *
+     * @param \AppBundle\Entity\Page $page
+     *
+     * @return User
+     */
+    public function addPage(\AppBundle\Entity\Page $page)
+    {
+        if (! $this->pages->contains($page)) {
+            $page->setUser($this);
+            $this->pages->add($page);
+        }
+        return $this->pages;
     }
 
     /**
      * Remove annonce
      *
-     * @param \AppBundle\Entity\contenuAnnonce $contenuAnnonce
+     * @param \AppBundle\Entity\contenuPage $contenuPage
      */
-    public function removeContenuAnnonce(\AppBundle\Entity\contenuAnnonce $contenuAnnonce)
+    public function removePage(\AppBundle\Entity\Page $page)
     {
-        $this->contenuAnnonces->removeElement($contenuAnnonce);
+        $this->pages->removeElement($page);
     }
 
+
     /**
-     * Get annonces
+     * Get pages
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContenuAnnonces()
+    public function getPages()
     {
-        return $this->contenuAnnonces;
-    }
-
-
-
-
-    /**
-     * Add annonce
-     *
-     * @param \AppBundle\Entity\contenuPage $contenuPage
-     *
-     * @return User
-     */
-    public function addContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
-    {
-        if (! $this->contenuPages->contains($contenuPage)) {
-            $contenuPage->setUser($this);
-            $this->contenuPages->add($contenuPage);
-        }
-        return $this->contenuPages;
-    }
-
-    /**
-     * Remove annonce
-     *
-     * @param \AppBundle\Entity\contenuPage $contenuPage
-     */
-    public function removeContenuPage(\AppBundle\Entity\contenuPage $contenuPage)
-    {
-        $this->contenuPages->removeElement($contenuPage);
-    }
-
-    /**
-     * Get annonces
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getContenuPages()
-    {
-        return $this->contenuPages;
+        return $this->pages;
     }
 
 
@@ -453,71 +454,30 @@ class User extends BaseUser
         return $this->statut;
     }
 
+
+
+
     /**
-     * Add annonce
+     * Add bonsplan
      *
-     * @param \AppBundle\Entity\Annonce $annonce
+     * @param \AppBundle\Entity\Bonplan $bonsplan
      *
      * @return User
      */
-    public function addAnnonce(\AppBundle\Entity\Annonce $annonce)
+    public function addBonsplan(\AppBundle\Entity\Bonplan $bonsplan)
     {
-        $this->annonces[] = $annonce;
+        $this->bonsplans[] = $bonsplan;
 
         return $this;
     }
 
     /**
-     * Remove annonce
+     * Remove bonsplan
      *
-     * @param \AppBundle\Entity\Annonce $annonce
+     * @param \AppBundle\Entity\Bonplan $bonsplan
      */
-    public function removeAnnonce(\AppBundle\Entity\Annonce $annonce)
+    public function removeBonsplan(\AppBundle\Entity\Bonplan $bonsplan)
     {
-        $this->annonces->removeElement($annonce);
-    }
-
-    /**
-     * Get annonces
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAnnonces()
-    {
-        return $this->annonces;
-    }
-
-    /**
-     * Add page
-     *
-     * @param \AppBundle\Entity\Page $page
-     *
-     * @return User
-     */
-    public function addPage(\AppBundle\Entity\Page $page)
-    {
-        $this->pages[] = $page;
-
-        return $this;
-    }
-
-    /**
-     * Remove page
-     *
-     * @param \AppBundle\Entity\Page $page
-     */
-    public function removePage(\AppBundle\Entity\Page $page)
-    {
-        $this->pages->removeElement($page);
-    }
-
-    /**
-     * Get pages
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPages()
-    {
-        return $this->pages;
+        $this->bonsplans->removeElement($bonsplan);
     }
 }
