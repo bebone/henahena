@@ -255,4 +255,16 @@ class Lieu
     {
         return $this->telephone;
     }
+
+
+    /**
+     * Get info
+     *
+     * @return string
+     */
+    public function getInfo()
+    {
+        return ($this->nom.' '.$this->adresse.' '.$this->codePostal.' - '.$this->commune);
+    }
+
 }

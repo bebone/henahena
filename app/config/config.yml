@@ -76,10 +76,3 @@ fos_user:
     from_email:
             address: henahena@example.com
             sender_name: Hena
-
-services:
-   user_registration:
-      class: UserBundle\Form\Type\RegistrationFormType
-      arguments: [%fos_user.model.user.class%]
-      tags:
-         -  { name: form.type }

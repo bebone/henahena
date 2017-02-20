@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EvenementType extends AbstractType {
 
@@ -16,10 +17,10 @@ class EvenementType extends AbstractType {
         $builder
             ->add('nom')
             ->add('contenu')
-            ->add('dateHeure')
-            ->add('lieu')
+            ->add('dateHeure', null, array('years'=>range(date('Y'), date('Y') + 1),'months'=> range(1, 12), 'days'=> range(1, 31)))
+            ->add('lieu', EntityType::class, array('class' => 'AppBundle:Lieu','choice_label' => 'getInfo',
+            ));
 
-        ;
     }
 
     /**
