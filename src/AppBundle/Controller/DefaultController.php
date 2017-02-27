@@ -59,7 +59,7 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
                 $contact = $formContact->getData();
 
                 $message = \Swift_Message::newInstance()
-                    ->setSubject($contact->getSujet())
+                    ->setSubject("[ HENA HENA ] ".$contact->getSujet())
                     ->setFrom($contact->getEmail())
                     // notre adresse mail
                     ->setTo('contact@anaisvidal.fr')
