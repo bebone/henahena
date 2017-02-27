@@ -1,0 +1,39 @@
+{# fichier temporaire pour afficher le formulaire #}
+<body>
+<h1>Contact</h1>
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<form action="{{ path('contact') }}" method="post">
+    {{ form_label(formContact.email) }}
+    {{ form_widget(formContact.email) }}
+    {{ form_errors(formContact.email) }}
+    <br/>
+
+    {{ form_label(formContact.nom) }}
+    {{ form_widget(formContact.nom) }}
+    {{ form_errors(formContact.nom) }}
+    <br/>
+
+
+    {{ form_label(formContact.sujet) }}
+    {{ form_widget(formContact.sujet) }}
+    {{ form_errors(formContact.sujet) }}
+    <br/>
+
+    {{ form_label(formContact.message) }}
+    {{ form_widget(formContact.message) }}
+    {{ form_errors(formContact.message) }}
+    <br/>
+
+    {#Ce dernier form widget vas nous permettre d'ajouter des que nous aurions pu oublier et SURTOUT le form token sans ça votre formulaire ne sera jamais valide !!#}
+    {{ form_widget(formContact) }}
+    {{ form_errors(formContact) }}
+    <button class="btn btn-success btn-big">Envoyer</button>
+</form>
+</body>
