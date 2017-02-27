@@ -17,7 +17,11 @@ class BonplanType extends AbstractType {
             ->add('titre')
             ->add('contenu')
             ->add('categorie', 'entity', array('class' => 'AppBundle:Categorie', 'property' => 'nom', 'label'=>'Catégorie'))
-
+            ->add('superficie')
+            ->add('loyer')
+            ->add('prix')
+            ->add('depart')
+            ->add('arrivee')
         ;
     }
 

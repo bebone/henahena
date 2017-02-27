@@ -12,7 +12,7 @@ use AppBundle\Form\Type\BonplanType;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 
-class BonplanController extends Controller
+class BonplanController extends Controller // Gestion des bons plans
 {
     /**
      * @Secure(roles="ROLE_USER")
@@ -40,6 +40,7 @@ class BonplanController extends Controller
         ));
 
     }
+
 
 
     /**

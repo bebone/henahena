@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * AnnonceRepository
  *
@@ -10,4 +13,25 @@ namespace AppBundle\Repository;
  */
 class BonplanRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUserBonsplans($user, $page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('bp')
+            ->andWhere('bp.user = :user')
+            ->setParameter('user', $user );
+
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
+
 }

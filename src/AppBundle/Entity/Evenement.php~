@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Evenement
@@ -41,6 +44,10 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="dateHeure", type="datetime")
+     *
+     * @Assert\Range(
+     *      min = "now",
+     *      max = "+365 days")
      */
     private $dateHeure;
 
@@ -64,6 +71,14 @@ class Evenement
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participe", mappedBy="evenement")
      */
     private $participants;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime")
+     */
+    private $dateModif;
 
 
     /**
@@ -153,6 +168,7 @@ class Evenement
     public function __construct()
     {
         $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateHeure= new \DateTime();
     }
 
     /**

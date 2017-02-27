@@ -74,6 +74,14 @@ class Evenement
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime")
+     */
+    private $dateModif;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -243,5 +251,29 @@ class Evenement
     public function getContenu()
     {
         return $this->contenu;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Evenement
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
     }
 }

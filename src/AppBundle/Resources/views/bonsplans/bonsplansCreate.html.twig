@@ -17,8 +17,43 @@
         {{ form_widget(form.contenu) }}
     </div>
 
+    <div>
+        {{ form_errors(form.superficie) }}
+        {{ form_label(form.superficie) }}
+        {{ form_widget(form.superficie) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.loyer) }}
+        {{ form_label(form.loyer) }}
+        {{ form_widget(form.loyer) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.prix) }}
+        {{ form_label(form.prix) }}
+        {{ form_widget(form.prix) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.depart) }}
+        {{ form_label(form.depart) }}
+        {{ form_widget(form.depart) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.arrivee) }}
+        {{ form_label(form.arrivee) }}
+        {{ form_widget(form.arrivee) }}
+    </div>
 
 
     {{ form_rest(form) }}
     <input type="submit" id="submit" value="VALIDER" name="submit" />
 </form>
+<script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
+
+<script>
+
+    CKEDITOR.replace( 'bonplan_create[contenu]' );
+</script>

@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Page;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Session\Session;
 use AppBundle\Entity\Lieu;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,7 +14,7 @@ use AppBundle\Form\Type\PageType;
 
 
 
-class PageController extends Controller
+class PageController extends Controller // Gestion des pages
 {
     /**
      * @Secure(roles="ROLE_USER")
@@ -79,7 +80,8 @@ class PageController extends Controller
         $entity = $em->getRepository('AppBundle:Page')->findOneBy(array('slug'=>$slug));
 
         if (!$entity) {
-            throw $this->createNotFoundException("Impossible");
+           throw $this->createNotFoundException("Impossible");
+
         }
 
         $editForm = $this->createForm(new PageType(), $entity);
