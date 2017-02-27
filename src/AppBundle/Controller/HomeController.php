@@ -13,16 +13,16 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 
-class ConnectController extends Controller //Utilisateur Connecté sur la plateforme
+class HomeController extends Controller //Utilisateur Connecté sur la plateforme
 {
     /**
      * @Secure(roles="ROLE_USER")
-     * @Route("/connect", name="connect_index")
+     * @Route("/home", name="home_index")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Bonplan')->findAll();
-        return $this->render('AppBundle:connect:index.html.twig', array());
+        return $this->render('AppBundle:home:index.html.twig', array());
     }
 }

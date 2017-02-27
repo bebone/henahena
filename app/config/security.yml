@@ -27,9 +27,10 @@ security:
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
+                default_target_path: /your/start/path/
             logout:
                 path:       fos_user_security_logout
-                target:     /
+                target:     /home
             remember_me:
                 secret:     %secret%
             # activate different ways to authenticate
