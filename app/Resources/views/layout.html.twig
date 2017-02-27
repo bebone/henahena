@@ -64,11 +64,18 @@
                     <a href="bonplans.html"><i class="fa fa-paper-plane"></i><br>Bon plans</a>
                 </li>
                 <li>
+                    {% if app.user %}
+                    <a href="/profil"><i class="fa fa-user-circle-o"></i><br>{{ app.user.prenom }}</a>
+                <li>
+                    <a href="/logout"><i class="fa fa-sign-in"></i><br>Deconnexion</a>
+                </li>
+                    {%  else %}
+                <li>
                     <a href="/register"><i class="fa fa-sign-in"></i><br>S'inscrire</a>
                 </li>
-                <li>
-                    <a href="connection"><i class="fa fa-user-circle-o"></i><br>Se connecte</a>
-                </li>
+                   <li> <a href="/login"><i class="fa fa-user-circle-o"></i><br>Se connnecte</a></li>
+                    {% endif %}
+
             </ul>
         </div>
     </div>

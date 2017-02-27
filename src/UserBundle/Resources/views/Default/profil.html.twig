@@ -1,5 +1,7 @@
-{#Il nous faut le layout ! #}
-<body>
+{% extends "::layout.html.twig" %}
+
+{% block contenu %}
+
 <h1>{{ user.prenom }} {{ user.nom }}</h1>
 <h2>{{ user.statut }}</h2>
 {{ user.sexe }} {{ user.Age }} ans
@@ -35,4 +37,4 @@
     {% endif %}
 
 </div>
-</body>
+{% endblock %}
