@@ -1,218 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "::layout.html.twig" %}
 
-<head>
+{%  block contenu %}
+<div id="tf-features">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
-   
-         {% block stylesheets %}
-            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
-            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
-            <link href="{{ asset('style/bootstrap.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('style/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
-            <link href="{{ asset('style/style.css') }}" type="text/css" rel="stylesheet" />
-        {% endblock %}
-    
-    
-    
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <div id="feature" class="gray-bg"> <!-- fullwidth gray background -->
+        <div class="container"> <!-- container -->
+            <div class="row" role="tabpanel"> <!-- row -->
+                <div class="col-md-4 col-md-offset-1"> <!-- tab menu col 4 -->
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+                    <ul class="features nav nav-pills nav-stacked" role="tablist">
+                        <li role="presentation" class="active">  <!-- feature tab menu #1 -->
+                            <a href="#f1" aria-controls="f1" role="tab" data-toggle="tab">
+                                <span class="fa fa-desktop"></span>
+                                Internet Communication<br>
+                                <small>sub title here</small>
+                            </a>
+                        </li>
+                        <li role="presentation"> <!-- feature tab menu #2 -->
+                            <a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+                                <span class="fa fa-pencil"></span>
+                                Branding and Development<br>
+                                <small>sub title here</small>
+                            </a>
+                        </li>
+                        <li role="presentation"> <!-- feature tab menu #3 -->
+                            <a href="#f3" aria-controls="f3" role="tab" data-toggle="tab">
+                                <span class="fa fa-space-shuttle"></span>
+                                Motion Graphics<br>
+                                <small>sub title here</small>
+                            </a>
+                        </li>
+                        <li role="presentation"> <!-- feature tab menu #4 -->
+                            <a href="#f4" aria-controls="f4" role="tab" data-toggle="tab">
+                                <span class="fa fa-automobile"></span>
+                                Mobile Application<br>
+                                <small>sub title here</small>
+                            </a>
+                        </li>
+                        <li role="presentation"> <!-- feature tab menu #5 -->
+                            <a href="#f5" aria-controls="f5" role="tab" data-toggle="tab">
+                                <span class="fa fa-institution"></span>
+                                Relaible Company Analysis<br>
+                                <small>sub title here</small>
+                            </a>
+                        </li>
+                    </ul>
 
-</head>
+                </div><!-- end tab menu col 4 -->
 
-<body>
+                <div class="col-md-6"> <!-- right content col 6 -->
+                    <!-- Tab panes -->
+                    <div class="tab-content features-content"> <!-- tab content wrapper -->
+                        <div role="tabpanel" class="tab-pane fade in active" id="f1"> <!-- feature #1 content open -->
+                            <h4>Internet Communication</h4>
+                            <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor
+                                cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor
+                                pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est
+                                ut cubilia nec, fermentum arcu praesent.</p>
+                            <img src="img/tab01.png" class="img-responsive" alt="...">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="f2"> <!-- feature #2 content -->
+                            <h4>Branding and Development</h4>
+                            <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor
+                                cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor
+                                pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est
+                                ut cubilia nec, fermentum arcu praesent.</p>
+                            <img src="img/tab02.png" class="img-responsive" alt="...">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="f3"> <!-- feature #3 content -->
+                            <h4>Motion Graphics</h4>
+                            <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor
+                                cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor
+                                pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est
+                                ut cubilia nec, fermentum arcu praesent.</p>
+                            <img src="img/tab03.png" class="img-responsive" alt="...">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="f4"> <!-- feature #4 content -->
+                            <h4>Mobile Application</h4>
+                            <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor
+                                cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor
+                                pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est
+                                ut cubilia nec, fermentum arcu praesent.</p>
+                            <img src="img/tab04.png" class="img-responsive" alt="...">
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="f5"> <!-- feature #5 content -->
+                            <h4>Relaible Company Analysis</h4>
+                            <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor
+                                cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor
+                                pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est
+                                ut cubilia nec, fermentum arcu praesent.</p>
+                            <img src="img/tab05.png" class="img-responsive" alt="...">
+                        </div>
+                    </div> <!-- end tab content wrapper -->
+                </div><!-- end right content col 6 -->
 
+            </div> <!-- end row -->
+        </div> <!-- end container -->
+    </div><!-- end fullwidth gray background -->
+</div>
+
+
+<!-- Services -->
+<div class="services-container">
     <div class="container">
-		    <div class="row">
-		        <div class="col-md-3">
-			        <img src="" alt="">
-		        </div>
-		        	
-		        <div class="col-md-6"></div>
-		        
-		        <div class="col-md-3">
-			        <a href="#inscription" class="btn btn-outline">Inscription</a>
-		        </div>
-		    </div>
-		    <div class="row">
-		        <div class="col-md-9">newsfeed</div>
-		        <div class="col-md-3">
-			        
-			        <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="http://carte-escapegame.fr/wp-content/uploads/2016/03/Lyon-1.jpg">
-                                </a>
-                    </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="service wow fadeInUp">
+                    <div class="service-icon"><i class="fa fa-eye"></i></div>
+                    <h3>Beautiful Websites</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et...</p>
 
-			        
-		        </div>
-		        <div class="col-md-9">3</div>
-		        <div class="col-md-3">
-			         <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="https://static.pexels.com/photos/195401/pexels-photo-195401.jpeg">
-                                </a>
-                            </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="service wow fadeInDown">
+                    <div class="service-icon"><i class="fa fa-table"></i></div>
+                    <h3>Responsive Layout</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et...</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="service wow fadeInUp">
+                    <div class="service-icon"><i class="fa fa-magic"></i></div>
+                    <h3>Awesome Logos</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et...</p>
 
-		        </div>
-		    </div>    
-		        <div class="row">
-		        <div class="col-md-6"></div>
-		        <div class="col-md-6"> <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="https://images.pexels.com/photos/30027/pexels-photo-30027.jpg?w=940&h=650&auto=compress&cs=tinysrgb">
-                                </a>
-                            </div>
- </div>
-		        </div>
-		        
-		        <div class="row">
-		        <div class="col-md-6"></div>
-		        <div class="col-md-3"><div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="https://static.pexels.com/photos/7112/woman-typing-writing-windows.jpg">
-                                </a>
-                            </div>
-</div>
-		        <div class="col-md-3"><div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="https://static.pexels.com/photos/33999/pexels-photo.jpg">
-                                </a>
-                            </div>
-</div>
-		    </div>
-		</div>
-		
-		
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="service wow fadeInDown">
+                    <div class="service-icon"><i class="fa fa-print"></i></div>
+                    <h3>High Res Prints</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et...</p>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place
-                        <br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
         </div>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-    //#to-top button appears after scrolling
-    var fixed = false;
-    $(document).scroll(function() {
-        if ($(this).scrollTop() > 250) {
-            if (!fixed) {
-                fixed = true;
-                // $('#to-top').css({position:'fixed', display:'block'});
-                $('#to-top').show("slow", function() {
-                    $('#to-top').css({
-                        position: 'fixed',
-                        display: 'block'
-                    });
-                });
-            }
-        } else {
-            if (fixed) {
-                fixed = false;
-                $('#to-top').hide("slow", function() {
-                    $('#to-top').css({
-                        display: 'none'
-                    });
-                });
-            }
-        }
-    });
-    // Disable Google Maps scrolling
-    // See http://stackoverflow.com/a/25904582/1607849
-    // Disable scroll zooming and bind back the click event
-    var onMapMouseleaveHandler = function(event) {
-        var that = $(this);
-        that.on('click', onMapClickHandler);
-        that.off('mouseleave', onMapMouseleaveHandler);
-        that.find('iframe').css("pointer-events", "none");
-    }
-    var onMapClickHandler = function(event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the user clicks the map
-    $('.map').on('click', onMapClickHandler);
-    </script>
-
-</body>
-
-</html>
+    </div>
+</div>
+{%  endblock %}

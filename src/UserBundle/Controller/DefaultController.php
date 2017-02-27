@@ -10,6 +10,9 @@ use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
+
+
+
     /**
      * @Secure(roles="ROLE_USER")
      * @Route("/profil")
