@@ -19,36 +19,9 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
     /**
      * @Route("/", name="index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
 
-        return $this->render('AppBundle::index.html.twig');
-    }
-    /**
-     * @Route("/logements", name="logements")
-     */
-     public function logementsAction()
-    {
-
-        return $this->render('AppBundle::logement.html.twig');
-    }
-    
-     /**
-     * @Route("/bons-plans", name="bonsplans")
-     */
-     public function bonplansAction()
-    {
-
-
-        return $this->render('AppBundle::bonsplans.html.twig');
-    }
-
-
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contactAction(Request $request) //temporaire
-    {
         $formContact = $this->createForm(new ContactType());
         if($request->isMethod('post')){
 
@@ -83,15 +56,30 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
             }
         }
 
-        return $this->render('AppBundle::contact.html.twig', array(
+        return $this->render('AppBundle::index.html.twig', array(
             // on renvoi dans la vue "la vue" du formulaire
             'formContact' => $formContact->createView()
         ));
-
     }
 
+    /**
+     * @Route("/logements", name="logements")
+     */
+     public function logementsAction()
+    {
+
+        return $this->render('AppBundle::logement.html.twig');
+    }
+    
+     /**
+     * @Route("/bons-plans", name="bonsplans")
+     */
+     public function bonplansAction()
+    {
 
 
+        return $this->render('AppBundle::bonsplans.html.twig');
+    }
 
 }
 

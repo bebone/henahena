@@ -55,7 +55,7 @@ class PageController extends Controller // Gestion des pages
 
     /**
      *
-     * @Route("/{slug}", name="page")
+     * @Route("/{slug}", name="page" , requirements= {"slug": "[a-zA-Z]+"})
      */
     public function viewPageAction($slug)
     {
