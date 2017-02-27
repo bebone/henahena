@@ -1,3 +1,6 @@
+{%  extends "::layout.html.twig" %}
+{% block contenu %}
+
 <form action="{{ path("bonsplans_create")}}" method="post" {{ form_enctype(form) }}>
 
 
@@ -52,8 +55,11 @@
     <input type="submit" id="submit" value="VALIDER" name="submit" />
 </form>
 <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
-
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
 <script>
 
     CKEDITOR.replace( 'bonplan_create[contenu]' );
 </script>
+{%  endblock %}

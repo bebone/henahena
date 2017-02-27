@@ -1,9 +1,6 @@
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+{%  extends "::layout.html.twig" %}
+{% block contenu %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 <form action="{{ path("evenement_create")}}" method="post" {{ form_enctype(form) }}>
 
     <div class="form-group">
@@ -27,9 +24,12 @@
     {{ form_rest(form) }}
     <input type="submit" id="submit" value="" name="submit" />
 </form>
-
+{%  endblock %}
+{% block scripts %}
+{{ parent() }}
 <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
 
 <script>
     CKEDITOR.replace( 'evenement_create[contenu]' );
 </script>
+{% endblock %}
