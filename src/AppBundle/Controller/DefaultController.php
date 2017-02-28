@@ -22,6 +22,7 @@ class DefaultController extends Controller // Controller par défaut - pages pr�
     public function indexAction(Request $request)
     {
 
+
         $formContact = $this->createForm(new ContactType());
         if($request->isMethod('post')){
 
@@ -43,33 +44,26 @@ class DefaultController extends Controller // Controller par défaut - pages pr�
                             )
                         )
                     );
-
                 // nous appelons le service swiftmailer et on envoi :)
                 $this->get('mailer')->send($message);
 
                 // on retourne une message flash pour l'utilisateur pour le prévenir que son mail est bien parti
                 $this->get('session')->getFlashBag()->add('info', 'Merci pour votre email !');
+                return $this->render('AppBundle::index.html.twig');
             }else{
                 //si le formulaire n'est pas valide en plus des erreurs du form
                 $this->get('session')->getFlashBag()->add('danger', 'Désolé un problème est survenu.');
-
+                return $this->render('AppBundle::index.html.twig');
             }
         }
 
-        return $this->render('AppBundle::index.html.twig', array(
+        return $this->render('AppBundle:Default:index.html.twig', array(
             // on renvoi dans la vue "la vue" du formulaire
-            'formContact' => $formContact->createView()
+            'formContact' => $formContact->createView(),
         ));
     }
 
-    /**
-     * @Route("/logements", name="logements")
-     */
-     public function logementsAction()
-    {
 
-        return $this->render('AppBundle::logement.html.twig');
-    }
     
      /**
      * @Route("/bons-plans", name="bonsplans")

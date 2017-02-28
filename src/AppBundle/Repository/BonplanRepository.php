@@ -34,4 +34,26 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+
+
+    public function getAllBonplan($page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('bp');
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie seulement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
+
+
+
 }

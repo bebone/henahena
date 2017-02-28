@@ -24,9 +24,12 @@
     {% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9]>-->
+    {% block scriptsHead %}
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    {%  endblock %}
     <![endif]-->
 
     <!-- Favicon and touch icons -->
@@ -55,16 +58,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-                        <i class="fa fa-home"></i><br>Logement <span class="caret"></span>
+                <li>
+                    <a href="/logements">
+                        <i class="fa fa-home"></i><br>Logements <span class="caret"></span>
                     </a>
                 </li>
+                {% if app.user %}
                 <li>
-                    <a href="bonplans.html"><i class="fa fa-paper-plane"></i><br>Bon plans</a>
+                    <a href="bonplans.html"><i class="fa fa-paper-plane"></i><br>Bon plans  <span class="caret"></span></a>
                 </li>
                 <li>
-                    {% if app.user %}
+
                     <a href="/profil"><i class="fa fa-user-circle-o"></i><br>{{ app.user.prenom }}</a>
                 <li>
                     <a href="/logout"><i class="fa fa-sign-in"></i><br>Deconnexion</a>
@@ -297,7 +301,6 @@
 
 <!-- Javascript -->
 {%  block scripts %}
-<script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>

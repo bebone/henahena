@@ -34,7 +34,7 @@ class BonplanController extends Controller // Gestion des bons plans
             return $this->redirect($this->generateUrl('index'));
         }
 
-        return $this->render('AppBundle:bonsplans:bonsplansCreate.html.twig', array(
+        return $this->render('AppBundle:bonsplans:bonplanCreate.html.twig', array(
             'entity' => $bonplan,
             'form' => $form->createView()
         ));
@@ -54,6 +54,30 @@ class BonplanController extends Controller // Gestion des bons plans
         $entity = $em->getRepository('AppBundle:Bonplan')->find(array('id'=>$id));
 
         return $this->render('AppBundle:bonsplans:bonplan.html.twig', array('bonplan'=>$entity));
+    }
+
+
+    /**
+     *
+     * @Route("/bons-plans_index/{page}", name="bonplan_ajax")
+     */
+    public function indexBonplanAction($page)
+    {
+        $nbParPage = 5; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $bonsplans = $em->getRepository('AppBundle:Bonplan')->getAllBonplan($page, $nbParPage);
+
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($bonsplans) / $nbParPage),
+            'nomRoute' => 'bonsplans_ajax',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('AppBundle:bonsplans:bonplanAjax.html.twig', array('bonsplans' => $bonsplans, 'pagination' => $pagination));
+
+
     }
 
 

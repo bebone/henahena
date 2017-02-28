@@ -1,0 +1,44 @@
+<div id="tf-features">
+    <div id="feature" class="gray-bg"> <!-- fullwidth gray background -->
+        <div class="container"> <!-- container -->
+            <div class="row" role="tabpanel"> <!-- row -->
+                <div class="col-md-4 col-md-offset-1"> <!-- tab menu col 4 -->
+
+                    <ul class="features nav nav-pills nav-stacked" role="tablist">
+                        {%  for bonplan in bonsplans %}
+                        <li role="presentation" class="">  <!-- feature tab menu #1 -->
+                            <a href="#{{ bonplan.id }}" aria-controls="{{ bonplan.id }}" role="tab" data-toggle="tab">
+                                <span class="fa fa-desktop"></span>
+                                {{ bonplan.titre }}<br><small>sub title here</small>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div><!-- end tab menu col 4 -->
+
+                <div class="col-md-6"> <!-- right content col 6 -->
+                    <!-- Tab panes -->
+                    <div class="tab-content features-content"> <!-- tab content wrapper -->
+                        {%  for bonplan in bonsplans %}
+                        <div role="tabpanel" class="tab-pane fade" id="{{ bonplan.id }}"> <!-- feature #5 content -->
+                            <h4>{{ bonplan.titre }}</h4>
+                            <p> {{ bonplan.contenu | raw }}</p>
+                            <img src="img/tab05.png" class="img-responsive" alt="...">
+                        </div>
+                        {% endfor %}
+                    </div> <!-- end tab content wrapper -->
+                </div><!-- end right content col 6 -->
+
+            </div> <!-- end row -->
+        </div> <!-- end container -->
+    </div><!-- end fullwidth gray background -->
+</div>
+</div>
+
+{% include 'AppBundle:Default:pagination.html.twig' %}
+
+
+
+
+
