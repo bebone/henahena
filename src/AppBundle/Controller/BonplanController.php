@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use AppBundle\Entity\Bonplan;
+use AppBundle\Entity\Evenement;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -44,7 +45,7 @@ class BonplanController extends Controller // Gestion des bons plans
 
     /**
      *
-     * @Route("/bons-plans/{id}", name="bonplan")
+     * @Route("/bons-plans/{id}", name="bonplan_view")
      */
     public function viewBonplanAction($id)
     {
@@ -52,7 +53,7 @@ class BonplanController extends Controller // Gestion des bons plans
 
         $entity = $em->getRepository('AppBundle:Bonplan')->find(array('id'=>$id));
 
-        return $this->render('AppBundle:bonsplans:bonplan.html.twig', array('bonplan'=>$entity));
+        return $this->render('AppBundle:bonsplans:bonplanView.html.twig', array('bonplan'=>$entity));
     }
 
 
@@ -120,9 +121,13 @@ class BonplanController extends Controller // Gestion des bons plans
      * @Route("/home", name="bonplan_home_connect")
      *
      */
-    public function BonplanHomeConnectAction()
+    public function homeConnectBonplanAction()
     {
-        return $this->render('AppBundle:bonsplans:bonplan.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $bonsplans = $em->getRepository('AppBundle:Bonplan')->findAll(); //TODO
+        $evenements = $em->getRepository('AppBundle:Evenement')->findAll();
+
+        return $this->render('AppBundle:bonsplans:bonsplans.html.twig', array('bonsplans'=>$bonsplans, 'evenements'=>$evenements));
     }
 
 

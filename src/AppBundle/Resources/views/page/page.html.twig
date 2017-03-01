@@ -1,6 +1,10 @@
 {%  extends "::layout.html.twig" %}
+{% block titre %}
+    {{ parent() }} {{ page.titre }}
+    {% endblock %}
 {% block contenu %}
- {% autoescape 'html' %}
-{{ page.contenu }}
-    {% endautoescape %}
+
+    <h1>{{ page.titre }}</h1>
+{{ page.contenu | raw }}
+
 {% endblock %}

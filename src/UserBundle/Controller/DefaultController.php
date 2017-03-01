@@ -17,10 +17,25 @@ class DefaultController extends Controller
      * @Secure(roles="ROLE_USER")
      * @Route("/profil")
      */
-    public function profilAction()
+    public function profilAction() // Mon profil
     {
-        //TO DO ici récuperer TOUTES les données, limiter les résultats
+        //TODO ici récuperer TOUTES les données, limiter les résultats
         $user = $this->getUser();
+        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user));
+    }
+
+    /**
+     * @Secure(roles="ROLE_USER")
+     * @Route("/profil/{id}", name="user_profilof")
+     */
+    public function profilOfAction($id) //Le profil d'un user
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $user=$em->getRepository('UserBundle:User')->find($id);
+        if($user==null) {
+            return $this->render('UserBundle:Default:privileges.html.twig',array('error'=>500)); //si la page n'existe pas
+        }
         return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user));
     }
 
@@ -68,7 +83,6 @@ class DefaultController extends Controller
 
         return $this->render('UserBundle:Default:userBonsplans.html.twig', array('bonsplans'=>$bonsplans, 'pagination'=>$pagination));
     }
-
 
 
 

@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block contenu %}
+    <div class="content">
+        <h1>{{ bonplan.titre }}</h1>
+        <p>{{ bonplan.contenu | raw }}</p>
+
+        {% if bonplan.categorie.id==1 %}
+            {{ bonplan.depart }}
+            {{ bonplan.arrivee }}
+            {{ bonplan.prix }}
+        {% elseif bonplan.categorie.id==2 %}
+            {{ bonplan.superficie }} m2
+            {{ bonplan.loyer }} €
+        {% else %}
+        {% endif %}
+    </div>
+{% endblock %}

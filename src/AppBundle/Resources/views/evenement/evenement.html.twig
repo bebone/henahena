@@ -2,7 +2,10 @@
 {%  block title %}
     {{ parent() }} - {{ evenement.nom}}
 {% endblock %}
-{%  block body %}
-{{ evenement.id }} {{ evenement.nom}}
-    {{ evenement.user.prenom }}
+{%  block contenu %}
+    <div class="content">
+    <h1>{{ evenement.nom }}</h1>
+
+        Créé par : <a href="{{ path('user_profilof',{'id':evenement.user.id}) }}">{{ evenement.user.prenom }}</a>
+    </div>
 {%  endblock %}

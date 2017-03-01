@@ -1,5 +1,10 @@
+{% extends "::layout.html.twig" %}
+{% block contenu %}
+    <h1>Oups !</h1>
 {%  if error==403 %}
 Vous n'êtes pas autorisé à faire ça
-{%  else %}
-Lol
+{%  elseif error==500 %}
+    {# Requete demandée envoi un objet null :: pour des erreurs inconnues voir TwigException#}
+Cette page n'existe pas !
 {%  endif %}
+{%  endblock %}

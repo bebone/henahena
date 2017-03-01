@@ -17,7 +17,7 @@ use AppBundle\Form\Type\PageType;
 class PageController extends Controller // Gestion des pages
 {
     /**
-     * @Secure(roles="ROLE_USER")
+     * @Secure(roles="ROLE_ADMIN")
      * @Route("/page/create", name="page_create")
      */
     public function createPageAction(Request $request)
@@ -68,7 +68,7 @@ class PageController extends Controller // Gestion des pages
 
 
     /**
-     * @Secure(roles="ROLE_USER")
+     * @Secure(roles="ROLE_ADMIN")
      * @Route("/{slug}/edit", name="page_edit", requirements= {"slug": "[a-zA-Z]+"})
      * @Method({"GET", "POST"})
      */

@@ -4,7 +4,7 @@
 {% block contenu %}
     <h1>Ravi de vous revoir !</h1>
 <div class="row-fluid">
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" ">
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
         <input type="text" class="form-control" placeholder="E-mail" name="_username" value="{{ last_username }}" required autofocus>
         <input type="password" class="form-control" placeholder="Mot de passe" name="_password" required>
 

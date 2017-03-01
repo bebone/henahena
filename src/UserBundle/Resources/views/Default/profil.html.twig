@@ -1,5 +1,7 @@
 {% extends "::layout.html.twig" %}
-
+{%  block titre %}
+    {{ parent() }} Profil
+    {% endblock %}
 {% block contenu %}
 
 <h1>{{ user.prenom }} {{ user.nom }}</h1>
@@ -7,17 +9,16 @@
 {{ user.sexe }} {{ user.Age }} ans
 
 
-<div>
-    Mes évenements créés
+    <h2>Mes évenements créés</h2>
     <ul>
         {% for evenementCree in user.evenementsCrees %}
             <li><a href="{{ path('evenement_view',{'id': evenementCree.id }) }}">{{ evenementCree.nom }}
                     - {{ evenementCree.dateHeure|date }}</a></li>
         {% endfor %}
     </ul>
-</div>
+
 <div>
-    Mes participations aux évenements
+    <h2>Mes participations aux évenements</h2>
     {% if user.participations is empty %}
         Aucune participation à afficher.
     {% else %}
@@ -27,7 +28,7 @@
     {% endif %}
 </div>
 <div>
-    Mes annonces
+    <h2>Mes bons plans</h2>
     {% if user.bonsplans is empty %}
         Aucun bon plan à afficher.
     {% else %}
@@ -37,4 +38,5 @@
     {% endif %}
 
 </div>
+
 {% endblock %}
