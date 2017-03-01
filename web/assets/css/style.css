@@ -25,7 +25,7 @@ img { max-width: 100%; }
 h1, h2 { line-height: 40px; color: #fff }
 h3, h4 { line-height: 16px; color: #000 }
 
-::-moz-selection { background: #ffb03b; color: #fff; text-shadow: none; }
+::-moz-selection { background: #ffb03b color: #fff; text-shadow: none; }
 ::selection { background: #ffb03b; color: #fff; text-shadow: none; }
 
 
@@ -561,7 +561,7 @@ footer {
 	margin-bottom: 20px;
 }
 
-.contact-form input[type="text"], .contact-form input[type="email"]  { width: 95%; height: 34px; }
+.contact-form input[type="text"] { width: 95%; height: 34px; }
 .contact-form textarea { width: 95%; height: 170px; padding-top: 6px; padding-bottom: 6px; }
 .contact-form label { font-size: 13px; font-weight: 400; }
 .contact-form label .error-label { font-style: italic }

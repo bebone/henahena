@@ -38,7 +38,6 @@ class BonplanController extends Controller // Gestion des bons plans
             'entity' => $bonplan,
             'form' => $form->createView()
         ));
-
     }
 
 
@@ -76,7 +75,6 @@ class BonplanController extends Controller // Gestion des bons plans
         );
 
         return $this->render('AppBundle:bonsplans:bonplanAjax.html.twig', array('bonsplans' => $bonsplans, 'pagination' => $pagination));
-
 
     }
 
@@ -116,5 +114,17 @@ class BonplanController extends Controller // Gestion des bons plans
 
         }
     }
+
+    /**
+     * @Secure(roles="ROLE_USER")
+     * @Route("/home", name="bonplan_home_connect")
+     *
+     */
+    public function BonplanHomeConnectAction()
+    {
+        return $this->render('AppBundle:bonsplans:bonplan.html.twig');
+    }
+
+
 
 }
