@@ -64,16 +64,6 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
     }
 
 
-    
-     /**
-     * @Route("/bons-plans", name="bonsplans")
-     */
-     public function bonplansAction()
-    {
-
-
-        return $this->render('AppBundle::bonsplans.html.twig');
-    }
 
 }
 
