@@ -150,7 +150,6 @@ class Bonplan
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-
         return $this;
     }
 

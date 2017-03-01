@@ -23,7 +23,9 @@
                         {%  for bonplan in bonsplans %}
                         <div role="tabpanel" class="tab-pane fade" id="{{ bonplan.id }}"> <!-- feature #5 content -->
                             <h4>{{ bonplan.titre }}</h4>
+                            {% autoescape %}
                             <p> {{ bonplan.contenu | raw }}</p>
+                            {% endautoescape %}
                             <img src="img/tab05.png" class="img-responsive" alt="...">
                         </div>
                         {% endfor %}
