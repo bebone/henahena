@@ -208,7 +208,7 @@ class Evenement
     /**
      * Set lieu
      *
-     * @param \UserBundle\Entity\User $lieu
+     * @param \AppBundle\Entity\Lieu $lieu
      *
      * @return Evenement
      */
@@ -222,7 +222,7 @@ class Evenement
     /**
      * Get lieu
      *
-     * @return \UserBundle\Entity\User
+     * @return \AppBundle\Entity\Lieu
      */
     public function getLieu()
     {
