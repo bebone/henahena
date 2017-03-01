@@ -1,6 +1,6 @@
 {%  extends "::layout.html.twig" %}
 {% block contenu %}
-    {% autoescape %}
-{{ page.contenu | raw }}
+ {% autoescape 'html' %}
+{{ page.contenu }}
     {% endautoescape %}
 {% endblock %}
