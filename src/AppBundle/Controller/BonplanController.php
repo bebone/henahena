@@ -153,8 +153,8 @@ class BonplanController extends Controller // Gestion des bons plans
     public function homeConnectBonplanAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $bonsplans = $em->getRepository('AppBundle:Bonplan')->findAll(); //TODO
-        $evenements = $em->getRepository('AppBundle:Evenement')->findAll();
+        $bonsplans = $em->getRepository('AppBundle:Bonplan')->getVingt(); //TODO
+        $evenements = $em->getRepository('AppBundle:Evenement')->getVingt();
 
         return $this->render('AppBundle:bonsplans:bonsplans.html.twig', array('bonsplans'=>$bonsplans, 'evenements'=>$evenements));
     }

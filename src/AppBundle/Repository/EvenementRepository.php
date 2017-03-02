@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class EvenementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getVingt()
+    {
+
+        //Affichage seulement des bons plans de l'admin
+        $qb = $this->createQueryBuilder('e')
+            ->leftJoin('e.user','u')
+            ->andWhere('u.roles LIKE :roles')
+            ->addOrderBy('e.dateModif', 'DESC')
+            ->setParameter('roles','%ROLE_ADMIN%')
+            ->setMaxResults(20);
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+
+    }
+
 }

@@ -21,7 +21,7 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('bp')
             ->andWhere('bp.user = :user')
-            ->setParameter('user', $user );
+            ->setParameter('user', $user);
 
         $query = $qb->getQuery();
 
@@ -33,7 +33,6 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
         return $paginator;
 
     }
-
 
 
     public function getAllBonplan($page, $maxPage)
@@ -54,6 +53,18 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function getVingt()
+    {
+
+
+        $qb = $this->createQueryBuilder('bp')
+            ->addOrderBy('bp.dateModif', 'DESC')
+            ->setMaxResults(20);
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+
+    }
 
 
 }
