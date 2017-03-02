@@ -21,7 +21,8 @@ class DefaultController extends Controller
     {
         //TODO ici récuperer TOUTES les données, limiter les résultats
         $user = $this->getUser();
-        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user));
+        $form = $this->createForm(\UserBundle\Form\Type\RegistrationFormType::class, $user);
+        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user, 'form'=>$form));
     }
 
     /**
@@ -84,7 +85,31 @@ class DefaultController extends Controller
         return $this->render('UserBundle:Default:userBonsplans.html.twig', array('bonsplans'=>$bonsplans, 'pagination'=>$pagination));
     }
 
+    /**
+     * @Secure(roles="ROLE_USER")
+     * @Route("/profil/edit", name="user_edit")
+     *
+     */
+    public function editUser(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->find(array('id' => $id));
 
+        if (!$user) {
+            throw $this->createNotFoundException("Impossible");
+        }
+        if ($this->getUser() == $user) {  //On vérifie bien qu'il s'agit de l'auteur
 
+            $editForm = $this->createForm(\UserBundle\Form\Type\RegistrationFormType::class, $entity);
+            $editForm->handleRequest($request);
+
+            if ($editForm->isValid()) {
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', "Le profil a bien été modifié.");
+                return $this->redirect($request->headers->get('referer'));
+            }
+
+        }
+    }
 
 }

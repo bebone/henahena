@@ -1,42 +1,97 @@
 {% extends "::layout.html.twig" %}
-{%  block titre %}
+{% block titre %}
     {{ parent() }} Profil
-    {% endblock %}
+{% endblock %}
 {% block contenu %}
 
-<h1>{{ user.prenom }} {{ user.nom }}</h1>
-<h2>{{ user.statut }}</h2>
-{{ user.sexe }} {{ user.Age }} ans
+    <h1><span class="fa fa-user"></span> {{ user.prenom }} {{ user.nom }}</h1>
 
-
-    <h2>Mes évenements créés</h2>
-    <ul>
-        {% for evenementCree in user.evenementsCrees %}
-            <li><a href="{{ path('evenement_view',{'id': evenementCree.id }) }}">{{ evenementCree.nom }}
-                    - {{ evenementCree.dateHeure|date }}</a></li>
-        {% endfor %}
+    <ul class="nav nav-tabs">
+        <li class="active"><a aria-expanded="true" href="#info" data-toggle="tab"><span class="fa fa-info-circle"></span> Info</a></li>
+        <li class=""><a aria-expanded="false" href="#evenements" data-toggle="tab"> <span class="fa fa-calendar"></span>
+                Participations aux évenements</a>
+        </li>
+        <li class=""><a aria-expanded="false" href="#bonsplans" data-toggle="tab"><span
+                        class="fa fa-paper-plane"></span> Bons plans créés</a></li>
+        {% if app.user == user %}
+            <li class=""><a aria-expanded="false" href="#settings" data-toggle="tab">Changer ses infos</a></li>
+        {% endif %}
     </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="info">
+            <h2>{{ user.statut }}</h2>
+            {{ user.sexe }} {{ user.Age }} ans
+        </div>
+        <div class="tab-pane fade" id="evenements">
 
-<div>
-    <h2>Mes participations aux évenements</h2>
-    {% if user.participations is empty %}
-        Aucune participation à afficher.
-    {% else %}
-        {% for participation in user.participations %}
-            {{ participation.evenement.nom }}
-        {% endfor %}
-    {% endif %}
-</div>
-<div>
-    <h2>Mes bons plans</h2>
-    {% if user.bonsplans is empty %}
-        Aucun bon plan à afficher.
-    {% else %}
-        {% for bonplan in user.bonsplans %}
-            {{ bonplan.titre }}
-        {% endfor %}
-    {% endif %}
+            {% if user.participations is empty %}
+                Aucune participation à afficher.
+            {% else %}
+                <table class="table table-striped table-hover ">
+                    <thead>
+                    <tr>
+                        <th>Événement</th>
+                        <th>Date</th>
+                        <th>Lieu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for participation in user.participations %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('evenement_view',{'id':evenement.id}) }}">{{ participation.evenement.nom }}</a>
+                            </td>
+                            <td>{{ participation.evenement.dateHeure }}</td>
+                            <td>{{ participation.evenement.lieu.info }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
 
-</div>
+
+        </div>
+        <div class="tab-pane fade" id="bonsplans">
+            {% if user.bonsplans is empty %}
+                Aucune participation à afficher.
+            {% else %}
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th>Bon plan</th>
+                        <th>catégorie</th>
+                        <th>dernière modification</th>
+                        {% if app.user == user %}
+                            <th>Actions</th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for bonplan in user.bonsplans %}
+                        <tr>
+                            <td><a href="{{ path('bonplan_view',{'id':bonplan.id}) }}">{{ bonplan.titre }}</a></td>
+                            <td>{{ bonplan.categorie.nom }}</td>
+                            <td>{{ bonplan.dateModif | date("d/m/Y à H:i") }}</td>
+                            <td><a href="{{ path('bonplan_edit',{'id':bonplan.id}) }}"
+                                   class="btn btn-primary">Modifier</a>
+                                <a href="{{ path('bonplan_delete', {'id':bonplan.id}) }}" class="btn btn-danger"
+                                   onclick="return confirm('Supprimer??')"><span class="fa fa-trash"></span></a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            {% if app.user == user %}
+                <td>{#% include 'UserBundle:Default:edit.html.twig' %#}</td>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+
 
 {% endblock %}

@@ -116,6 +116,35 @@ class BonplanController extends Controller // Gestion des bons plans
         }
     }
 
+
+    /**
+     * @Secure(roles="ROLE_USER")
+     * @Route("/bons-plans/{id}/delete", name="bonplan_delete")
+     *
+     */
+    public function deleteBonplanAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bonplan = $em->getRepository('AppBundle:Bonplan')->find(array('id' => $id));
+
+        if (!$bonplan) {
+            throw $this->createNotFoundException("Impossible");
+        }
+        if ($this->getUser() == $bonplan->getUser()) {  //On vérifie bien qu'il s'agit de l'auteur
+            $em->remove($bonplan);
+            $em->flush();
+            return $this->redirect($request->headers->get('referer'));
+            /*return $this->render('AppBundle:User:profil.html.twig', array(
+                    'user' => $bonplan)
+            );*/
+        } else {
+            //On lui indique l'erreur Forbidden 403
+            return $this->render('UserBundle:Default:privileges.html.twig', array('error' => 403));
+
+        }
+    }
+
+
     /**
      * @Secure(roles="ROLE_USER")
      * @Route("/home", name="bonplan_home_connect")
