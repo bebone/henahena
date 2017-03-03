@@ -4,11 +4,11 @@
 {% endblock %}
 {% block contenu %}
 
-    <h1><span class="fa fa-map-marker"></span> Lieux </h1>
+    <h1><span class=""></span> Événements </h1>
 
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#Lieux" data-toggle="tab">Lieux</a></li>
+        <li class="active"><a href="#Événements" data-toggle="tab">Événements</a></li>
         <li><a href="#profile" data-toggle="tab">Profile</a></li>
         <li class="disabled"><a>Disabled</a></li>
         <li class="dropdown">
@@ -24,30 +24,32 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active in" id="Lieux">
-                <table class="table ">
-                    <thead>
+            <table class="table ">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Lieu</th>
+                    <th>Participants</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for evenement in evenements %}
                     <tr>
-                        <th>Informations</th>
-                        <th>Téléphone</th>
-                        <th>Nombre d'événements associés</th>
-                         <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for lieu in lieux %}
-                        <tr>
-                            <td> {{ lieu.info }}</td>
-                            <td>{{ lieu.telephone }}</td>
-                            <td>{{ lieu.evenementsLieu|length }}</td>
-                            <td><a href="{{ path('lieu_edit',{'id':lieu.id}) }}"
-                                   class="btn btn-primary">Modifier</a>
-                                <a href="{{ path('lieu_delete', {'id':lieu.id}) }}" class="btn btn-danger"
-                                   onclick="return confirm('Supprimer??')"><span class="fa fa-trash"></span></a></td>
+                        <td> <a href="{{ path("evenement_view", { 'id': evenement.id })}}">{{ evenement.nom }}</a></td>
+                        <td>{{ evenement.dateHeure | date("d/m/Y à H:i") }}</td>
+                        <td>{{ evenement.lieu.info }}</td>
+                        <td> {{ evenement.participants|length }}</td>
+                        <td><a href="{{ path('evenement_edit',{'id':evenement.id}) }}"
+                               class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('evenement_delete', {'id':evenement.id}) }}" class="btn btn-danger"
+                               onclick="return confirm('Supprimer??')"><span class="fa fa-trash"></span></a></td>
 
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane fade" id="profile">
             <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
@@ -60,5 +62,5 @@
         </div>
     </div>
 
-{{ parent() }}
+    {{ parent() }}
 {% endblock %}

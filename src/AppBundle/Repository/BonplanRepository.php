@@ -79,5 +79,21 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
+    public function getFromAdmin()
+    {
+
+        //Affichage seulement des bons plans de l'admin
+        $qb = $this->createQueryBuilder('bp')
+            ->leftJoin('bp.user','u')
+            ->andWhere('u.roles LIKE :roles')
+            ->addOrderBy('bp.dateModif', 'DESC')
+            ->setParameter('roles','%ROLE_ADMIN%');
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+
+    }
+
+
 
 }

@@ -26,8 +26,10 @@
 
 
     {{ form_rest(form) }}
-    <input type="submit" id="submit" value="" name="submit" />
+    <input type="submit" id="submit" value="Valider" name="submit" />
 </form>
+
+    {{ parent() }}
 {%  endblock %}
 
 {% block scripts %}

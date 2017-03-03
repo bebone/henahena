@@ -50,7 +50,7 @@ class LieuController extends Controller // Gestion des événements
             if ($editForm->isValid()) {
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', "Le lieu a bien été modifié.");
-                return $this->redirect($this->generateUrl('evenement', array('id' => $id)));
+                return $this->redirect($request->headers->get('referer'));
             }
             return $this->render('UserBundle:Admin:lieuEdit.html.twig', array(
                 'entity' => $entity,
@@ -64,11 +64,25 @@ class LieuController extends Controller // Gestion des événements
 
         /**
          * @Secure(roles="ROLE_ADMIN")
-         * @Route("/lieux-manage", name="lieu_delete")
+         * @Route("/lieu/{id}/delete", name="lieu_delete")
          */
-        public function lieuDeleteAction(Request $request) //Création d'un événement
+        public function lieuDeleteAction(Request $request, $id) //Création d'un événement
         {
+            $em = $this->getDoctrine()->getManager();
+            $lieu = $em->getRepository('AppBundle:Lieu')->find(array('id' => $id));
+
+            if (!$lieu) {
+                throw $this->createNotFoundException("Impossible");
+            }
+
+            $em->remove($lieu);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', "Le lieu a bien été supprimé");
+            return $this->redirect($request->headers->get('referer'));
+
+
         }
+
 
 }
 

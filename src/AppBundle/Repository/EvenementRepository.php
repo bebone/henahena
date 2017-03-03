@@ -13,7 +13,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
     public function getVingt()
     {
 
-        //Affichage seulement des bons plans de l'admin
+        //Affichage seulement des événements plans de l'admin
         $qb = $this->createQueryBuilder('e')
             ->leftJoin('e.user','u')
             ->andWhere('u.roles LIKE :roles')

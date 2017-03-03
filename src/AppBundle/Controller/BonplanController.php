@@ -103,7 +103,7 @@ class BonplanController extends Controller // Gestion des bons plans
                 $entity->setDateModif(new \DateTime()); //nouvelle date
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', "Le bon plan a bien été modifié.");
-                return $this->redirect($this->generateUrl('bonplan', array('id' => $id)));
+                return $this->redirect($request->headers->get('referer'));
             }
             return $this->render('AppBundle:bonsplans:bonplanEdit.html.twig', array(
                 'entity' => $entity,
@@ -157,6 +157,18 @@ class BonplanController extends Controller // Gestion des bons plans
         $evenements = $em->getRepository('AppBundle:Evenement')->getVingt();
 
         return $this->render('AppBundle:bonsplans:bonsplans.html.twig', array('bonsplans'=>$bonsplans, 'evenements'=>$evenements));
+    }
+
+
+    /**
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/bons-plans-manage", name="bonsplans_manage")
+     */
+    public function bonplanManageAction(Request $request) //Création d'un événement
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bonsplans = $em->getRepository('AppBundle:Bonplan')->getFromAdmin();
+        return $this->render('UserBundle:Admin:bonplanAdmin.html.twig', array('bonsplans' => $bonsplans));
     }
 
 

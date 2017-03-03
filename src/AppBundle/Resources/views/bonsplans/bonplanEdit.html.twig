@@ -54,10 +54,11 @@
     {{ form_rest(form) }}
     <input type="submit" id="submit" value="VALIDER" name="submit" />
 </form>
-<script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
+<p>{{ parent() }}</p>
 {%  endblock %}
 {% block scripts %}
     {{ parent() }}
+    <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
 <script>
 
         if ($('#bonplan_create_categorie option:selected').val() == 1) {

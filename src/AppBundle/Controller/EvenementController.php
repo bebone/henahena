@@ -85,7 +85,7 @@ class EvenementController extends Controller // Gestion des événements
                 $entity->setDateModif(new \DateTime()); //nouvelle date
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', "L'événement a bien été modifié.");
-                return $this->redirect($this->generateUrl('evenement', array('id' => $id)));
+                return $this->redirect($request->headers->get('referer'));
             }
             return $this->render('AppBundle:evenement:evenementEdit.html.twig', array(
                 'entity' => $entity,
@@ -98,7 +98,38 @@ class EvenementController extends Controller // Gestion des événements
         }
     }
 
+    /**
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/evenements-manage", name="evenement_manage")
+     */
+    public function evenementManageAction(Request $request) //Création d'un événement
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenements = $em->getRepository('AppBundle:Evenement')->findAll();
+        return $this->render('UserBundle:Admin:evenementAdmin.html.twig', array('evenements' => $evenements));
+    }
 
+    /**
+     * @Secure(roles="ROLE_USER")
+     * @Route("/evenement/{id}/delete", name="evenement_delete")
+     *
+     */
+    public function deleteEvenementAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('AppBundle:Evenement')->find(array('id' => $id));
+
+        if (!$evenement) {
+            throw $this->createNotFoundException("Impossible");
+        }
+
+            $em->remove($evenement);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', "L'événement a bien été supprimé");
+            return $this->redirect($request->headers->get('referer'));
+
+
+    }
 
 
 }
