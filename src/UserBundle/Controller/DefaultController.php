@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use UserBundle\Entity\User;
+use AppBundle\Entity\Bonplan;
+use AppBundle\Form\Type\BonplanType;
 
 class DefaultController extends Controller
 {
@@ -21,8 +22,12 @@ class DefaultController extends Controller
     {
         //TODO ici récuperer TOUTES les données, limiter les résultats
         $user = $this->getUser();
-        $form = $this->createForm(\UserBundle\Form\Type\RegistrationFormType::class, $user);
-        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user, 'form'=>$form));
+        $bonplan = new Bonplan();
+
+        $form = $this->createForm(new BonplanType(), $bonplan);
+
+
+        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user, 'form'=>$form->createView()));
     }
 
     /**

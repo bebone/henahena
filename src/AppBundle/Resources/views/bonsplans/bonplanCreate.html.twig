@@ -1,8 +1,4 @@
 {% extends "::layout.html.twig" %}
-{% block scriptsHead %}
-    <script src="{{ asset('bundles/app/ckeditor/ckeditor.js') }}"></script>
-    {{ parent() }}
-{% endblock %}
 {% block contenu %}
 <h1>Ajouter un bon plan</h1>
     <form action="{{ path("bonsplans_create") }}" method="post" {{ form_enctype(form) }}>
