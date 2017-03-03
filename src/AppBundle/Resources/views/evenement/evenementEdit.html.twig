@@ -1,5 +1,6 @@
 {%  extends "::layout.html.twig" %}
 {% block contenu %}
+    <h1>Modifier un événement</h1>
 <form action="{{ path("evenement_edit", { 'id': entity.id })}}" method="post" {{ form_enctype(form) }}>
 
     <div class="form-group">

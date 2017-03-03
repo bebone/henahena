@@ -2,12 +2,12 @@
 {% block scriptsHead %}
     {{ parent() }}
     <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+        /*  $(document).ready(function () {
+         $('[data-toggle="tooltip"]').tooltip();
 
 
-            var url = "bons-plans_index/";
-            $("#target-content").load("{{ path('bonplan_ajax',{'page': 1}) }}", function () {
+         var url = "bons-plans_index/";
+         $("#target-content").load("{#{ path('bonplan_ajax',{'page': 1}) }#}", function () {
             }).fadeIn("slow");
 
             $(document).on("click", ".pagination li", function (e) {
@@ -18,6 +18,23 @@
                 $("#target-content").load(url + $(this).attr('id'), function () {
                 }).fadeIn("slow");
             });
+        });*/
+    </script>
+    <script src="{{asset("assets/js/jquery.bootstrap.newsbox.min.js")}}" type="text/javascript"></script>
+    <script>
+        $(function () {
+
+            $(".demo2").bootstrapNews({
+                newsPerPage: 4,
+                autoplay: true,
+                pauseOnHover: true,
+                navigation: false,
+                direction: 'down',
+                newsTickerInterval: 2500,
+                onToDo: function () {
+                    //console.log(this);
+                }
+            });
         });
     </script>
 {% endblock %}
@@ -26,83 +43,52 @@
 
 
     <div id="target-content">
-    <div id="tf-features">
-        <div id="feature" class="gray-bg"> <!-- fullwidth gray background -->
-            <div class="container"> <!-- container -->
-                <div class="row" role="tabpanel"> <!-- row -->
-                    <div class="col-md-4 col-md-offset-1"> <!-- tab menu col 4 -->
+        <div id="tf-features">
+            <div id="feature" class="gray-bg"> <!-- fullwidth gray background -->
+                <div class="container"> <!-- container -->
+                    <div class="row" role="tabpanel"> <!-- row -->
+                        <div class="col-md-4"> <!-- tab menu col 4 -->
 
-                        <ul class="features nav nav-pills nav-stacked" role="tablist">
-                            <li role="presentation" class="active">  <!-- feature tab menu #1 -->
-                                <a href="#f1" aria-controls="f1" role="tab" data-toggle="tab">
-                                    <span class="fa fa-desktop"></span>
-                                    Internet Communication<br><small>sub title here</small>
-                                </a>
-                            </li>
-                            <li role="presentation"> <!-- feature tab menu #2 -->
-                                <a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
-                                    <span class="fa fa-pencil"></span>
-                                    Branding and Development<br><small>sub title here</small>
-                                </a>
-                            </li>
-                            <li role="presentation"> <!-- feature tab menu #3 -->
-                                <a href="#f3" aria-controls="f3" role="tab" data-toggle="tab">
-                                    <span class="fa fa-space-shuttle"></span>
-                                    Motion Graphics<br><small>sub title here</small>
-                                </a>
-                            </li>
-                            <li role="presentation"> <!-- feature tab menu #4 -->
-                                <a href="#f4" aria-controls="f4" role="tab" data-toggle="tab">
-                                    <span class="fa fa-automobile"></span>
-                                    Mobile Application<br><small>sub title here</small>
-                                </a>
-                            </li>
-                            <li role="presentation"> <!-- feature tab menu #5 -->
-                                <a href="#f5" aria-controls="f5" role="tab" data-toggle="tab">
-                                    <span class="fa fa-institution"></span>
-                                    Relaible Company Analysis<br><small>sub title here</small>
-                                </a>
-                            </li>
-                        </ul>
 
-                    </div><!-- end tab menu col 4 -->
+                                <div class="panel panel-default actus">
+                                    <div class="panel-heading">Ça se passe sur HENA HENA</div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="demo2">
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div class="col-md-6"> <!-- right content col 6 -->
-                        <!-- Tab panes -->
-                        <div class="tab-content features-content"> <!-- tab content wrapper -->
-                            <div role="tabpanel" class="tab-pane fade in active" id="f1"> <!-- feature #1 content open -->
-                                <h4>Internet Communication</h4>
-                                <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.</p>
-                                <img src="img/tab01.png" class="img-responsive" alt="...">
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="f2"> <!-- feature #2 content -->
-                                <h4>Branding and Development</h4>
-                                <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.</p>
-                                <img src="img/tab02.png" class="img-responsive" alt="...">
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="f3"> <!-- feature #3 content -->
-                                <h4>Motion Graphics</h4>
-                                <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.</p>
-                                <img src="img/tab03.png" class="img-responsive" alt="...">
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="f4"> <!-- feature #4 content -->
-                                <h4>Mobile Application</h4>
-                                <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.</p>
-                                <img src="img/tab04.png" class="img-responsive" alt="...">
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="f5"> <!-- feature #5 content -->
-                                <h4>Relaible Company Analysis</h4>
-                                <p>Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.</p>
-                                <img src="img/tab05.png" class="img-responsive" alt="...">
-                            </div>
-                        </div> <!-- end tab content wrapper -->
-                    </div><!-- end right content col 6 -->
 
-                </div> <!-- end row -->
-            </div> <!-- end container -->
-        </div><!-- end fullwidth gray background -->
+                        </div><!-- end tab menu col 4 -->
+
+                        <div class="col-md-6"> <!-- right content col 6 -->
+                            <h1>HENA HENA !</h1>
+
+                            </div> <!-- end tab content wrapper -->
+                        </div><!-- end right content col 6 -->
+
+                    </div> <!-- end row -->
+                </div> <!-- end container -->
+            </div><!-- end fullwidth gray background -->
+        </div>
     </div>
-    </div>
+
+
+
+
+
+
+
 
     <!-- Services -->
     <div class="services-container">
