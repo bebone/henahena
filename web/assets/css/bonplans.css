@@ -19,9 +19,7 @@ html * {
 }
 
 body {
-  font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
-  color: #331d35;
   background-color: #f7d199;
 }
 
@@ -217,6 +215,7 @@ xtab-filter
     -webkit-transition: width 0.3s;
     -moz-transition: width 0.3s;
     transition: width 0.3s;
+    font-size:100%;
   }
   .cd-tab-filter.filter-is-visible {
     /* reduce width when filter is visible */

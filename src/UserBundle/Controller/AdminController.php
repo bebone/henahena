@@ -20,6 +20,7 @@ class AdminController extends Controller
     {
         //TO DO ici récuperer TOUTES les données, limiter les résultats
         $user = $this->getUser();
-        return $this->render('UserBundle:Default:admin.html.twig', array('user' => $user));
+        return $this->render('UserBundle:Admin:admin.html.twig', array('user' => $user));
     }
+
 }

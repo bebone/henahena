@@ -60,7 +60,7 @@ class EvenementController extends Controller // Gestion des événements
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('AppBundle:Evenement')->find($id);
 
-        return $this->render('AppBundle:evenement:evenement.html.twig', array('evenement'=>$evenement));
+        return $this->render('AppBundle:evenement:evenementView.html.twig', array('evenement'=>$evenement));
     }
 
     /**
