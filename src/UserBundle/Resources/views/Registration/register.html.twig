@@ -2,10 +2,14 @@
 {% block titre %}
     S'inscrire
 {% endblock %}
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('assets/jquery-ui/jquery-ui.min.css')}}">
+    {% endblock %}
 
 {% block contenu %}
-<h1>Inscrivez vous sur HenaHena !</h1>
-    <div class="row-fluid">
+<h1>Inscrivez-vous sur HenaHena !</h1>
+
     <form  action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
 
         <div class="form-group {% if form_errors(form.email)|length >1 %} error{% endif %}">
@@ -60,5 +64,28 @@
         </div>
         {{ form_rest(form) }}
     </form>
-    </div>
+
+{% endblock %}
+{% block scripts %}
+{{ parent() }}
+   <script src="{{asset("assets/jquery-ui/jquery-ui.min.js")}}"></script>
+    <script src="{{asset("assets/jquery-ui/datepicker-fr.js")}}"></script>
+    <script>
+    $('#datepicker').datepicker($.datepicker.regional['fr']);
+    $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        minDate: '1930-01-01',
+        maxDate: '2017-01-01',
+
+    });
+    afficherCalendrier('fos_user_registration_form_dateNaissance');
+    function afficherCalendrier(idInputDate)
+    {
+        $('#' + idInputDate).datepicker({
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            defaultDate: '1990-01-01'
+        });
+    }
+    </script>
 {% endblock %}

@@ -24,8 +24,9 @@ class RegistrationFormType extends BaseType
                     "En recherche d'emploi" => "En recherche d'emploi",
                     'Autre' => "Autre",
                 )))
-            ->add('dateNaissance', BirthdayType::class, array('attr' => array('class' => 'inputText'),
-                'years'=>range(date('Y')-100, date('Y')),'months'=> range(1, 12), 'days'=> range(1, 31)))
+            ->add('dateNaissance', 'datetime', array('attr' => array('class' => 'inputText'),
+                'widget' => 'single_text',
+                'input' => 'datetime'))
             ->add('sexe', ChoiceType::class, array(
                 'choices'  => array(
                     'H' => "Homme",

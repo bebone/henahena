@@ -51,7 +51,7 @@
 
 
                                 <div class="panel panel-default actus">
-                                    <div class="panel-heading">Ça se passe sur HENA HENA</div>
+                                    <div class="panel-heading">Ce qu'il se passe sur HENA HENA</div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-xs-12">
@@ -60,7 +60,7 @@
                                                         <li class="news-item">
                                                             <h4>{{ bonplan.user.prenom |upper }} {{ bonplan.user.nom|upper }}</h4>
                                                             <div>{{ bonplan.categorie.nom |upper }}</div>
-                                                            {{ bonplan.contenu|striptags|slice(0, 50) ~ '...' }} <a href="#">Voir plus...</a></li>
+                                                            {{ bonplan.contenu|striptags|slice(0, 50) ~ '...' }} <a href="{{ path('bonplan_view',{'id':bonplan.id}) }}">Voir plus...</a></li>
 
                                                 {% endfor %}
                                                 </ul>
@@ -97,8 +97,8 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="service wow fadeInUp">
-                        <div class="service-icon"><i class="fa fa-eye"></i></div>
-                        <h3>Beautiful Websites</h3>
+                        <div class="service-icon"><i class="fa fa-graduation-cap"></i></div>
+                        <h3>T'accompagner dans tes études</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et...</p>
 
@@ -106,16 +106,16 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="service wow fadeInDown">
-                        <div class="service-icon"><i class="fa fa-table"></i></div>
-                        <h3>Responsive Layout</h3>
+                        <div class="service-icon"><i class="fa fa-home"></i></div>
+                        <h3>Des logements</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et...</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="service wow fadeInUp">
-                        <div class="service-icon"><i class="fa fa-magic"></i></div>
-                        <h3>Awesome Logos</h3>
+                        <div class="service-icon"><i class="fa fa-paper-plane"></i></div>
+                        <h3>Des bons plans</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et...</p>
 
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="service wow fadeInDown">
-                        <div class="service-icon"><i class="fa fa-print"></i></div>
+                        <div class="service-icon"><i class="fa fa-eye"></i></div>
                         <h3>High Res Prints</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et...</p>
@@ -150,7 +150,7 @@
             <div class="row">
                 <div class="col-sm-7 contact-form wow fadeInLeft">
                     <p>
-                        N’hésitez pas a nous écrire pour plus d’information ou de suggestions. </p>
+                        N’hésite pas à nous écrire pour plus d’informations ou de suggestions. </p>
                     <form role="form" action="{{ path('index') }}" method="post">
                         <div class="form-group">
                             <label for="contact-name">Nom</label>
