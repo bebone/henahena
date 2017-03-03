@@ -32,7 +32,7 @@ class BonplanController extends Controller // Gestion des bons plans
             $em->persist($bonplan);
             $em->flush();
             $this->get('session')->getFlashBag()->add('info', "Le bon plan a bien été ajoutée");
-            return $this->redirect($this->generateUrl('index'));
+            return $this->redirect($request->headers->get('referer'));
         }
 
         return $this->render('AppBundle:bonsplans:bonplanCreate.html.twig', array(
@@ -169,7 +169,10 @@ class BonplanController extends Controller // Gestion des bons plans
     {
         $em = $this->getDoctrine()->getManager();
         $bonsplans = $em->getRepository('AppBundle:Bonplan')->getFromAdmin();
-        return $this->render('UserBundle:Admin:bonplanAdmin.html.twig', array('bonsplans' => $bonsplans));
+        $newbonplan = new Bonplan();
+        $form = $this->createForm(new BonplanType(), $newbonplan);
+        $form->handleRequest($request);
+        return $this->render('UserBundle:Admin:bonplanAdmin.html.twig', array('bonsplans' => $bonsplans,'form'=>$form->createView()));
     }
 
 

@@ -39,16 +39,14 @@ class EvenementController extends Controller // Gestion des événements
         if ($form->isValid()) {
 
             $evenement->setUser($user);
+            $evenement->setDateModif(new \DateTime());
             $em->persist($evenement);
             $em->flush();
             $this->get('session')->getFlashBag()->add('info', "L'évenement a bien été ajouté");
-            return $this->redirect($this->generateUrl('evenement_view', array('id' => $evenement->getId())));
+            return $this->redirect($request->headers->get('referer'));
         }
 
-        return $this->render('AppBundle:evenement:evenementCreate.html.twig', array(
-            'entity' => $evenement,
-            'form' => $form->createView()
-        ));
+        return $this->redirect($request->headers->get('referer'));
     }
 
     /**
@@ -106,7 +104,12 @@ class EvenementController extends Controller // Gestion des événements
     {
         $em = $this->getDoctrine()->getManager();
         $evenements = $em->getRepository('AppBundle:Evenement')->findAll();
-        return $this->render('UserBundle:Admin:evenementAdmin.html.twig', array('evenements' => $evenements));
+        $newevenement = new Evenement();
+
+
+        $form = $this->createForm(new EvenementType(), $newevenement);
+
+        return $this->render('UserBundle:Admin:evenementAdmin.html.twig', array('evenements' => $evenements,'form'=>$form->createView()));
     }
 
     /**

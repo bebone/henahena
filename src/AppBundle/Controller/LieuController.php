@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Evenement;
-use UserBundle\Entity\Lieu;
+use AppBundle\Entity\Lieu;
 use AppBundle\Form\Type\LieuType;
 
 
@@ -28,7 +28,9 @@ class LieuController extends Controller // Gestion des événements
     {
         $em = $this->getDoctrine()->getManager();
         $lieux = $em->getRepository('AppBundle:Lieu')->findAll();
-        return $this->render('UserBundle:Admin:lieuAdmin.html.twig', array('lieux' => $lieux));
+        $newlieu= new Lieu();
+        $form = $this->createForm(new LieuType(), $newlieu);
+        return $this->render('UserBundle:Admin:lieuAdmin.html.twig', array('lieux' => $lieux, 'form'=>$form->createView()));
     }
 
     /**
@@ -82,6 +84,33 @@ class LieuController extends Controller // Gestion des événements
 
 
         }
+
+    /**
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/lieu/create", name="lieu_create")
+     */
+    public function lieuCreateAction(Request $request) //Création d'un événement
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lieu = new Lieu();
+        $user = $this->getUser(); //On récupère l'utilisateur
+
+        $form = $this->createForm(new LieuType(), $lieu);
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            $em->persist($lieu);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', "Le lieu a bien été ajouté");
+            return $this->redirect($request->headers->get('referer'));
+        }
+
+        return $this->render('UserBundle:Admin:lieuCreate.html.twig', array(
+            'entity' => $lieu,
+            'form' => $form->createView()
+        ));
+    }
 
 
 }

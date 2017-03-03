@@ -212,7 +212,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setLieu(\UserBundle\Entity\User $lieu = null)
+    public function setLieu(\AppBundle\Entity\Lieu $lieu = null)
     {
         $this->lieu = $lieu;
 
