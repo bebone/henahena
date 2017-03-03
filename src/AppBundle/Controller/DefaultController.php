@@ -50,7 +50,7 @@ class DefaultController extends Controller // Controller par défaut - pages pr�
 
                 // on retourne une message flash pour l'utilisateur pour le prévenir que son mail est bien parti
                 $this->get('session')->getFlashBag()->add('info', 'Merci pour ton email, il a bien été envoyé !');
-                return $this->render('AppBundle:Default:index.html.twig',array('bonsplans'=>$bonsplans,'formContact' => $formContact->createView()));
+                return $this->render('AppBundle:Default:index.html.twig',array('bonsplans'=>$bonsplans,'formContact' => $formContact->$this->createForm(new ContactType())->createView()));
             }else{
                 //si le formulaire n'est pas valide en plus des erreurs du form
                 $this->get('session')->getFlashBag()->add('danger', 'Désolé un problème est survenu.');
