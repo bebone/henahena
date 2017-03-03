@@ -22,7 +22,8 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
     public function indexAction(Request $request)
     {
 
-
+        $em = $this->getDoctrine()->getManager();
+        $bonsplans = $em->getRepository('AppBundle:Bonplan')->getDix();
         $formContact = $this->createForm(new ContactType());
         if($request->isMethod('post')){
 
@@ -60,6 +61,7 @@ class DefaultController extends Controller // Controller par dÃ©faut - pages prÃ
         return $this->render('AppBundle:Default:index.html.twig', array(
             // on renvoi dans la vue "la vue" du formulaire
             'formContact' => $formContact->createView(),
+            'bonsplans'=>$bonsplans
         ));
     }
 

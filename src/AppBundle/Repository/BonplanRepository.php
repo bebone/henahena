@@ -66,5 +66,18 @@ class BonplanRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function getDix()
+    {
+
+        $qb = $this->createQueryBuilder('bp')
+            ->addOrderBy('bp.dateModif', 'DESC')
+            ->setMaxResults(10);
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+
+    }
+
+
 
 }

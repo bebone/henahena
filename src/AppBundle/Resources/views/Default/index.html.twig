@@ -25,7 +25,7 @@
         $(function () {
 
             $(".demo2").bootstrapNews({
-                newsPerPage: 4,
+                newsPerPage: 5,
                 autoplay: true,
                 pauseOnHover: true,
                 navigation: false,
@@ -56,12 +56,13 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <ul class="demo2">
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
-                                                    <li class="news-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></li>
+                                                    {%  for bonplan in bonsplans %}
+                                                        <li class="news-item">
+                                                            <h4>{{ bonplan.user.prenom |upper }} {{ bonplan.user.nom|upper }}</h4>
+                                                            <div>{{ bonplan.categorie.nom |upper }}</div>
+                                                            {{ bonplan.contenu|striptags|slice(0, 50) ~ '...' }} <a href="#">Voir plus...</a></li>
+
+                                                {% endfor %}
                                                 </ul>
                                             </div>
                                         </div>
