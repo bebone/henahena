@@ -6,7 +6,7 @@
 {% block contenu %}
     <div class="content">
         <h1>{{ bonplan.titre }} ({{ bonplan.categorie.nom }})</h1>
-        <p>{{ bonplan.contenu | striptags }}</p>
+        <p>{{ bonplan.contenu | html }}</p>
 
         {% if bonplan.categorie.id==1 %}
             {{ bonplan.depart }}

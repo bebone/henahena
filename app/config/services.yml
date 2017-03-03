@@ -3,9 +3,15 @@
 parameters:
 #    parameter_name: value
 
+
 services:
    user_registration:
       class: UserBundle\Form\Type\RegistrationFormType
       arguments: [%fos_user.model.user.class%]
       tags:
          -  { name: form.type }
+
+   mon_extension.twig:
+                 class: AppBundle\Twig\MonExtension
+                 tags:
+                     - { name: twig.extension }
