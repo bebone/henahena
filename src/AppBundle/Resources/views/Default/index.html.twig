@@ -1,25 +1,6 @@
 {% extends "::layout.html.twig" %}
 {% block scriptsHead %}
     {{ parent() }}
-    <script>
-        /*  $(document).ready(function () {
-         $('[data-toggle="tooltip"]').tooltip();
-
-
-         var url = "bons-plans_index/";
-         $("#target-content").load("{#{ path('bonplan_ajax',{'page': 1}) }#}", function () {
-            }).fadeIn("slow");
-
-            $(document).on("click", ".pagination li", function (e) {
-                e.preventDefault();
-                $("#target-content").html('Patientez...');
-                //$(".pagination li").removeClass('active');
-                //$(this).addClass('active');
-                $("#target-content").load(url + $(this).attr('id'), function () {
-                }).fadeIn("slow");
-            });
-        });*/
-    </script>
     <script src="{{asset("assets/js/jquery.bootstrap.newsbox.min.js")}}" type="text/javascript"></script>
     <script>
         $(function () {
@@ -179,6 +160,8 @@
                         </div>
                         {{ form_widget(formContact) }}
                         {{ form_errors(formContact) }}
+
+                        {{ form_rest(formContact) }}
                         <button type="submit" class="btn">Envoyer</button>
                     </form>
                 </div>
