@@ -87,7 +87,7 @@ class DefaultController extends Controller
 
     /**
      * @Secure(roles="ROLE_USER")
-     * @Route("/profil/edit", name="user_edit")
+     * @Route("/profil/{id}/edit", name="user_edit")
      *
      */
     public function editUser(Request $request, $id)
@@ -100,7 +100,7 @@ class DefaultController extends Controller
         }
         if ($this->getUser() == $user) {  //On vérifie bien qu'il s'agit de l'auteur
 
-            $editForm = $this->createForm(\UserBundle\Form\Type\RegistrationFormType::class, $entity);
+            $editForm = $this->createForm(\UserBundle\Form\Type\RegistrationFormType::class, $user);
             $editForm->handleRequest($request);
 
             if ($editForm->isValid()) {

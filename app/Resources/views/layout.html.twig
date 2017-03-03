@@ -94,7 +94,15 @@
 <!-- Main section
    ================================================== -->
 <div class="content">
-{% block contenu %}
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            <div class="row">
+                <div class="alert alert-info">  {{ flashMessage }} </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% block contenu %}
 {% endblock %}
 </div>
 <!-- Footer -->
@@ -137,7 +145,7 @@
         </div>
         <div class="row">
             <div class="col-sm-7 footer-copyright wow fadeIn">
-                <p>Copyright 2017 HenaHena - All rights reserved. Template by <a href="http://azmind.com">Azmind</a>.</p>
+                <p>Copyright 2017 HenaHena - All rights reserved.</p>
             </div>
             <div class="col-sm-5 footer-social wow fadeIn">
                Rejoins-nous sur les réseaux sociaux ! <a href="https://www.facebook.com/Hena-hena-1841642652756025/?__mref=message_bubble" targer="_blank"><i class="fa fa-facebook"></i></a>

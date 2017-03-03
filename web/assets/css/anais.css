@@ -99,3 +99,20 @@ select {
     -moz-border-radius: 20px;
     border-radius: 20px;
 }
+
+.administration {
+    text-transform: uppercase;
+    margin-left:40%;
+    margin-right:auto;
+}
+
+.adm-list {
+    background-color: #FEA600;
+    width: 30%;
+    height: 34px;
+    text-align:center;
+    font-weight:bold;
+    margin-bottom: 20px;
+    padding: 10px 30px 30px 30px;
+
+}
