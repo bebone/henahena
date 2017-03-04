@@ -128,4 +128,5 @@ class Participe
     {
         return $this->user;
     }
+
 }

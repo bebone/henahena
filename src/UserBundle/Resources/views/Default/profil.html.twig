@@ -29,22 +29,25 @@
             {% if user.participations is empty %}
                 Aucune participation à afficher.
             {% else %}
-                <table class="table table-striped table-hover ">
+                <table class="table">
                     <thead>
                     <tr>
                         <th>Événement</th>
                         <th>Date</th>
                         <th>Lieu</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for participation in user.participations %}
                         <tr>
                             <td>
-                                <a href="{{ path('evenement_view',{'id':evenement.id}) }}">{{ participation.evenement.nom }}</a>
+                                <a href="{{ path('evenement_view',{'id':participation.evenement.id}) }}">{{ participation.evenement.nom }}</a>
                             </td>
-                            <td>{{ participation.evenement.dateHeure }}</td>
+                            <td>{{ participation.evenement.dateHeure|date("d/m/Y à H:i")  }}</td>
                             <td>{{ participation.evenement.lieu.info }}</td>
+                            <td><a class="btn btn-danger" href="{{ path('participe_delete', {'evenementId':participation.evenement.id,'participantId':participation.id}) }}" onclick="return confirm('Annuler ma participation??')">Annuler</a></td>
+
                         </tr>
                     {% endfor %}
                     </tbody>

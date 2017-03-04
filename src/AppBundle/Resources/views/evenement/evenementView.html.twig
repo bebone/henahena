@@ -5,7 +5,10 @@
 {%  block contenu %}
     <div class="content">
     <h1>{{ evenement.nom }}</h1>
-
-        Créé par : <a href="{{ path('user_profilof',{'id':evenement.user.id}) }}">{{ evenement.user.prenom }}</a>
+        {% if isParticipant %}
+            Vous participez à l'événement
+            {%  else %}
+<a href="{{ path('participe_add',{'id':evenement.id}) }}">Participer</a>
+                {% endif %}
     </div>
 {%  endblock %}

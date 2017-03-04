@@ -276,4 +276,16 @@ class Evenement
     {
         return $this->dateModif;
     }
+
+    public function isParticipant($user)
+    {
+        foreach ($this->participants as $participant)
+        {
+            if($user == $participant->getUser()) {
+                return true;
+                break;
+            }
+            else return false;
+        }
+    }
 }

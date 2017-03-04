@@ -53,12 +53,13 @@ class EvenementController extends Controller // Gestion des événements
      * @Secure(roles="ROLE_USER")
      * @Route("/evenement/{id}", name="evenement_view", requirements={"id": "\d+"})
      */
-    public function evenementAction($id) //Affichage d'un évenement
+    public function viewEvenementAction($id) //Affichage d'un évenement
     {
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('AppBundle:Evenement')->find($id);
+        $isParticipant = $evenement->isParticipant($this->getUser());
 
-        return $this->render('AppBundle:evenement:evenementView.html.twig', array('evenement'=>$evenement));
+        return $this->render('AppBundle:evenement:evenementView.html.twig', array('evenement'=>$evenement,'isParticipant'=>$isParticipant));
     }
 
     /**
