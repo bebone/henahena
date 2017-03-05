@@ -125,3 +125,17 @@ label {
     color: #8E2800;
 }
 
+.contact-form input[type="email"] {
+    width: 95%;
+    height: 34px;
+}
+
+.main-title {
+    text-transform: uppercase;
+    font-weight:bold;
+    font-size: 25px;
+    text-shadow: 2px 3px 2px #8E2800;
+    margin-bottom: 30px;
+    
+}
+
