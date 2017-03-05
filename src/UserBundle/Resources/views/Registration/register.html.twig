@@ -8,6 +8,7 @@
     {% endblock %}
 
 {% block contenu %}
+    <center>
 <h1>Inscris-toi sur HenaHena !</h1>
 
     <form  action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
@@ -64,6 +65,7 @@
         </div>
         {{ form_rest(form) }}
     </form>
+    </center>
 
 {% endblock %}
 {% block scripts %}
