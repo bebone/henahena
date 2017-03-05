@@ -1,6 +1,7 @@
 {
     "name": "anais/henahena",
-    "license": "proprietary",
+    "description": "Website pour les étudiants marocains arrivant à Lyon",
+    "license": "GPL 3",
     "type": "project",
     "autoload": {
         "psr-4": {
