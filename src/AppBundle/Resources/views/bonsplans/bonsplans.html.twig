@@ -33,16 +33,16 @@
         <section class="cd-gallery">
             <ul>
                 {% for bonplan in bonsplans %}
-                    {% if bonplan.categorie.id==1 %} {# colocation#}
-                        <li class="mix colocation "><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="assets/img/img-1.jpg" alt="Image 1"></a></li>
-                    {% elseif bonplan.categorie.id==2 %}  {# covoiturage#}
-                        <li class="mix covoiturage"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="assets/img/img-3.jpg" alt="Image 3"></a></li>
+                    {% if bonplan.categorie.id==2 %} {# colocation#}
+                        <li class="mix colocation "><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=" "></a>{{ bonplan.titre }}</li>
+                    {% elseif bonplan.categorie.id==1 %}  {# covoiturage#}
+                        <li class="mix covoiturage"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=" "></a>{{ bonplan.titre }}</li>
                     {% else %} {# musée#}
-                        <li class="mix musees"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="assets/img/img-6.jpg" alt="Image 6"></a></li>
+                        <li class="mix musees"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=""></a>{{ bonplan.titre }}</li>
                     {% endif %}
                 {% endfor %}
                 {% for evenement in evenements %}
-                    <li class="mix evt"><a href="{{ path('evenement_view',{'id':  evenement.id}) }}"><img src="assets/img/img-10.jpg" alt="Image 10"></a></li>
+                    <li class="mix evt"><a href="{{ path('evenement_view',{'id':  evenement.id}) }}"><img src="assets/img/img-10.jpg" alt="Image 10"></a>{{ evenement.nom }}</li>
 
                 {% endfor %}
                 <li class="gap"></li>

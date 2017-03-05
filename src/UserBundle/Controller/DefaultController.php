@@ -40,10 +40,13 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user=$em->getRepository('UserBundle:User')->find($id);
+        $bonplan = new Bonplan();
+
+        $form = $this->createForm(new BonplanType(), $bonplan);
         if($user==null) {
             return $this->render('UserBundle:Default:privileges.html.twig',array('error'=>500)); //si la page n'existe pas
         }
-        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user));
+        return $this->render('UserBundle:Default:profil.html.twig',array('user'=>$user,'form'=>$form->createView()));
     }
 
     /**

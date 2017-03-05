@@ -76,7 +76,31 @@
     {{ parent() }}
     <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
 
+    <script src="{{ asset("assets/jquery-ui/jquery-ui.min.js") }}"></script>
+    <script src="{{ asset("assets/jquery-ui/datepicker-fr.js") }}"></script>
+
+
     <script>
-        CKEDITOR.replace( 'evenement_create[contenu]' );
+
+
+
+        $('#datepicker').datepicker($.datepicker.regional['fr']);
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd',
+            minDate: '1930-01-01',
+            maxDate: '2017-01-01',
+
+        });
+        afficherCalendrier('fos_user_registration_form_dateNaissance');
+        function afficherCalendrier(idInputDate) {
+            $('#' + idInputDate).datepicker({
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                defaultDate: '1990-01-01'
+            });
+        }
+    </script>
+    <script>
+        CKEDITOR.replace( 'contenu' );
     </script>
 {% endblock %}

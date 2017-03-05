@@ -355,4 +355,21 @@ class Bonplan
     {
         return $this->arrivee;
     }
+
+    public function getImage()
+    {
+        if($this->categorie->getId()==1){
+            return 'assets/img/img-3.jpg';
+        }
+        elseif($this->categorie->getId()==2){
+            return 'assets/img/img-2.jpg';
+        }
+        else {
+            return 'assets/img/img-7.jpg';
+        }
+
+    }
+
+
 }
+

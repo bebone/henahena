@@ -1,3 +1,31 @@
+
+
+body {
+    background: #ffb03b;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #888;
+    font-size: 12px;
+}
+
+.violet { color: #f7b04a; }
+
+a {
+    color: #ffb03b;
+    text-decoration: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+a:hover, a:focus { color: #888; text-decoration: none; }
+
+strong { font-weight: bold; }
+
+img { max-width: 100%; }
+
+h1, h2 { line-height: 40px; color: #fff }
+h3, h4 { line-height: 16px; color: #000 }
+
+::-moz-selection { background: #ffb03b; color: #fff; text-shadow: none; }
+::selection { background: #ffb03b; color: #fff; text-shadow: none; }
 /* -------------------------------- 
 
 Primary style
@@ -9,24 +37,6 @@ Primary style
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
-html * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  background-color: #f7d199;
-}
-
-a {
-  color: #8e2800;
-  text-decoration: none;
-}
 
 /* -------------------------------- 
 
@@ -36,8 +46,7 @@ Main Components
 
 .cd-main-content {
   position: relative;
-  min-height: 100vh;
-}
+  }
 .cd-main-content:after {
   content: "";
   display: table;
@@ -129,6 +138,7 @@ xtab-filter
 }
 .cd-tab-filter li {
   display: none;
+  
 }
 .cd-tab-filter li:first-child {
   /* this way the placehodler is alway visible */
@@ -215,7 +225,6 @@ xtab-filter
     -webkit-transition: width 0.3s;
     -moz-transition: width 0.3s;
     transition: width 0.3s;
-    font-size:100%;
   }
   .cd-tab-filter.filter-is-visible {
     /* reduce width when filter is visible */
@@ -233,8 +242,13 @@ xgallery
   width: 100%;
 }
 .cd-gallery li {
-  margin-bottom: 1.6em;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+	
+    margin-bottom: 1.6em;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #8e2800;
+    font-size: 14px;
+
   display: none;
 }
 .cd-gallery li.gap {

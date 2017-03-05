@@ -17,7 +17,7 @@ class EvenementType extends AbstractType {
         $builder
             ->add('nom')
             ->add('contenu')
-            ->add('dateHeure', null, array('years'=>range(date('Y'), date('Y') + 1),'months'=> range(1, 12), 'days'=> range(1, 31)))
+            ->add('dateHeure', 'datetime', array('widget' => 'single_text', 'attr'=>array('id'=>'datetimepicker')))
             ->add('lieu', EntityType::class, array('class' => 'AppBundle:Lieu','choice_label' => 'getInfo',
             ));
 
@@ -36,7 +36,7 @@ class EvenementType extends AbstractType {
      * @return string
      */
     public function getName() {
-        return 'evenement_create';
+        return null;
     }
 
 }
