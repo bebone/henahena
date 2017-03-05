@@ -24,8 +24,11 @@
             <strong>Loyer</strong>
             <p>{{ bonplan.loyer }} €</p>
             </div>
+           
         {% else %}
         {% endif %}
+         <hr/>
+         <p><em>Rédigé par <a href="{{path("user_profilof", { 'id': bonplan.user.id })}}">{{bonplan.user.prenom}}</a>, modifié le {{bonplan.dateModif|date("d/m/Y à H:i")}}</em></p>
     </div>
 {{ parent() }}
 {% endblock %}
