@@ -1,6 +1,6 @@
 {% extends "::layout.html.twig" %}
 {% block titre %}
-    {{ parent() }} Profil
+    {{ parent() }} Administration
 {% endblock %}
 {% block contenu %}
 
@@ -101,6 +101,6 @@
         }
     </script>
     <script>
-        CKEDITOR.replace( 'evenement_create[contenu]' );
+        CKEDITOR.replace( 'evenement[contenu]' );
     </script>
 {% endblock %}
