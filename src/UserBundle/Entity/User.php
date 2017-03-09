@@ -1,0 +1,483 @@
+<?php
+
+namespace UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Date;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", length=255, nullable=true)
+     */
+    private $statut;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNaissance", type="date", nullable=true)
+     */
+    private $dateNaissance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexe", type="string", length=255, nullable=true)
+     */
+    private $sexe;
+
+
+    /**
+     * @var ArrayCollection $bonsplans
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Bonplan", mappedBy="user")
+     */
+    private $bonsplans;
+
+
+    /**
+     * @var ArrayCollection $pages
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Page", mappedBy="user")
+     */
+    private $pages;
+
+
+    /**
+     * @var ArrayCollection $evenementsCrees
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evenement", mappedBy="user")
+     */
+    private $evenementsCrees;
+
+
+    /**
+     * @var ArrayCollection $participations
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participe", mappedBy="user")
+     */
+    private $participations;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->bonsplans = new ArrayCollection();
+        $this->pages = new ArrayCollection();
+        $this->evenementsCrees = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+        parent::__construct();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set pseudo
+     *
+     * @param string $pseudo
+     * @return User
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * Get pseudo
+     *
+     * @return string
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+
+    /**
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     * @return User
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set sexe
+     *
+     * @param string $sexe
+     * @return User
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe
+     *
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+
+    /**
+     * Add bonplan
+     *
+     * @param \AppBundle\Entity\Bonplan $bonplan
+     *
+     * @return User
+     */
+    public function addBonplan(\AppBundle\Entity\Bonplan $bonplan)
+    {
+        if (! $this->bonsplans->contains($bonplan)) {
+            $bonplan->setUser($this);
+            $this->bonsplans->add($bonplan);
+        }
+        return $this->bonplans;
+    }
+
+    /**
+     * Remove bonplan
+     *
+     * @param \AppBundle\Entity\Bonplan $bonplan
+     */
+    public function removeBonplan(\AppBundle\Entity\Bonplan $bonplan)
+    {
+        $this->bonsplans->removeElement($bonplan);
+    }
+
+    /**
+     * Get bonsplans
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBonsplans()
+    {
+        return $this->bonsplans;
+    }
+
+
+
+
+    /**
+     * Add Page
+     *
+     * @param \AppBundle\Entity\Page $page
+     *
+     * @return User
+     */
+    public function addPage(\AppBundle\Entity\Page $page)
+    {
+        if (! $this->pages->contains($page)) {
+            $page->setUser($this);
+            $this->pages->add($page);
+        }
+        return $this->pages;
+    }
+
+    /**
+     * Remove annonce
+     *
+     * @param \AppBundle\Entity\contenuPage $contenuPage
+     */
+    public function removePage(\AppBundle\Entity\Page $page)
+    {
+        $this->pages->removeElement($page);
+    }
+
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+
+
+    /**
+     * Add evenement
+     *
+     * @param \AppBundle\Entity\Evnemement $evenement
+     *
+     * @return User
+     */
+    public function addEvenement(\AppBundle\Entity\Evenement $evenement)
+    {
+        $this->evenementsCrees[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement
+     *
+     * @param \AppBundle\Entity\Evenement $evenement
+     */
+    public function removeEvenement(\AppBundle\Entity\Evenement $evenement)
+    {
+        $this->evenementsCrees->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenementsCrees;
+    }
+
+
+    /**
+     * Add evenementsCree
+     *
+     * @param \AppBundle\Entity\Evenement $evenementsCree
+     *
+     * @return User
+     */
+    public function addEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
+    {
+        $this->evenementsCrees[] = $evenementsCree;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenementsCree
+     *
+     * @param \AppBundle\Entity\Evenement $evenementsCree
+     */
+    public function removeEvenementsCree(\AppBundle\Entity\Evenement $evenementsCree)
+    {
+        $this->evenementsCrees->removeElement($evenementsCree);
+    }
+
+    /**
+     * Get evenementsCrees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenementsCrees()
+    {
+        return $this->evenementsCrees;
+    }
+
+    /**
+     * Add participation
+     *
+     * @param \AppBundle\Entity\Participe $participation
+     *
+     * @return User
+     */
+    public function addParticipation(\AppBundle\Entity\Participe $participation)
+    {
+        $this->participations[] = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Remove participation
+     *
+     * @param \AppBundle\Entity\Participe $participation
+     */
+    public function removeParticipation(\AppBundle\Entity\Participe $participation)
+    {
+        $this->participations->removeElement($participation);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
+    }
+
+
+    public function getAge() //On calcule à partir de la date de naissance
+    {
+        $date=$this->getDateNaissance();
+        $date_actuelle=date('Y');
+        $age = $date_actuelle - $date->format('Y');
+        if(date('n')>=$date->format('n') && date('j')>=$date->format('j')) {
+            return $age;
+        }
+            else {
+                return $age-1;
+            }
+    }
+
+    public function setEmail($email){
+        parent::setEmail($email);
+        $this->setUsername($email);
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     *
+     * @return User
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+
+
+
+    /**
+     * Add bonsplan
+     *
+     * @param \AppBundle\Entity\Bonplan $bonsplan
+     *
+     * @return User
+     */
+    public function addBonsplan(\AppBundle\Entity\Bonplan $bonsplan)
+    {
+        $this->bonsplans[] = $bonsplan;
+
+        return $this;
+    }
+
+    /**
+     * Remove bonsplan
+     *
+     * @param \AppBundle\Entity\Bonplan $bonsplan
+     */
+    public function removeBonsplan(\AppBundle\Entity\Bonplan $bonsplan)
+    {
+        $this->bonsplans->removeElement($bonsplan);
+    }
+}

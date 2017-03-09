@@ -1,0 +1,81 @@
+{%  extends "::layout.html.twig" %}
+{% block contenu %}
+    <h1>Modifier un bon plan ({{ entity.categorie.nom }})</h1>
+<form action="{{ path('bonplan_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+
+
+    <div>
+        {{ form_errors(form.titre) }}
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre) }}
+    </div>
+    <div style="display:none">
+        {{ form_errors(form.categorie) }}
+        {{ form_label(form.categorie) }}
+        {{ form_widget(form.categorie) }}
+    </div>
+    <div>
+        {{ form_errors(form.contenu) }}
+        {{ form_label(form.contenu) }}
+        {{ form_widget(form.contenu) }}
+    </div>
+
+    <div style="display:none" class="colocation">
+        {{ form_errors(form.superficie) }}
+        {{ form_label(form.superficie) }}
+        {{ form_widget(form.superficie) }}
+    </div>
+
+    <div style="display:none" class="colocation">
+        {{ form_errors(form.loyer) }}
+        {{ form_label(form.loyer) }}
+        {{ form_widget(form.loyer) }}
+    </div>
+
+    <div style="display:none" class="covoiturage">
+        {{ form_errors(form.prix) }}
+        {{ form_label(form.prix) }}
+        {{ form_widget(form.prix) }}
+    </div>
+
+    <div style="display:none" class="covoiturage">
+        {{ form_errors(form.depart) }}
+        {{ form_label(form.depart) }}
+        {{ form_widget(form.depart) }}
+    </div>
+
+    <div style="display:none" class="covoiturage">
+        {{ form_errors(form.arrivee) }}
+        {{ form_label(form.arrivee) }}
+        {{ form_widget(form.arrivee) }}
+    </div>
+
+
+    {{ form_rest(form) }}
+    <input type="submit" id="submit" value="VALIDER" name="submit" />
+</form>
+<p>{{ parent() }}</p>
+{%  endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
+<script>
+
+        if ($('#bonplan_create_categorie option:selected').val() == 1) {
+            $(".covoiturage").fadeIn("slow");
+            $(".colocation").fadeOut("slow");
+
+        }
+        else if ($('#bonplan_create_categorie option:selected').val() == 2) {
+            $(".covoiturage").fadeOut("slow");
+            $(".colocation").fadeIn("slow");
+        }
+        else {
+            $(".covoiturage").fadeOut("slow");
+            $(".colocation").fadeOut("slow");
+        }
+
+
+    CKEDITOR.replace( 'bonplan_create[contenu]' );
+</script>
+{%  endblock %}

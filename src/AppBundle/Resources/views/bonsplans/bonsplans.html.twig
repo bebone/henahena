@@ -1,0 +1,60 @@
+{% extends '::layout.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700'>
+
+    <link rel="stylesheet" href="assets/css/bonplans.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="assets/css/reset.css"> <!-- Resource style -->
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="assets/js/modernizr.js"></script> <!-- Modernizr -->
+{% endblock %}
+{% block contenu %}
+    <main class="cd-main-content">
+        <div class="cd-tab-filter-wrapper">
+            <div class="cd-tab-filter">
+                <ul class="cd-filters">
+                    <li class="placeholder">
+                        <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+                    </li>
+                    <li class="filter"><a class="selected" href="#0" data-type="bonplans">Bons plans</a></li>
+                    <li class="filter" data-filter=".colocation"><a href="#0" data-type="colocation">Colocation</a></li>
+                    <li class="filter" data-filter=".covoiturage"><a href="#0" data-type="covoiturage">Covoiturage</a>
+                    </li>
+                    <li class="filter" data-filter=".evt"><a href="#0" data-type="evt">Événements</a></li>
+                    <li class="filter" data-filter=".musees"><a href="#0" data-type="musees">Visites</a></li>
+
+                </ul> <!-- cd-filters -->
+            </div> <!-- cd-tab-filter -->
+        </div> <!-- cd-tab-filter-wrapper -->
+
+        <section class="cd-gallery">
+            <ul>
+                {% for bonplan in bonsplans %}
+                    {% if bonplan.categorie.id==2 %} {# colocation#}
+                        <li class="mix colocation "><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=" "></a>{{ bonplan.titre }}</li>
+                    {% elseif bonplan.categorie.id==1 %}  {# covoiturage#}
+                        <li class="mix covoiturage"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=" "></a>{{ bonplan.titre }}</li>
+                    {% else %} {# musée#}
+                        <li class="mix musees"><a href="{{ path('bonplan_view',{'id':  bonplan.id}) }}"><img src="{{ bonplan.getImage }}" alt=""></a>{{ bonplan.titre }}</li>
+                    {% endif %}
+                {% endfor %}
+                {% for evenement in evenements %}
+                    <li class="mix evt"><a href="{{ path('evenement_view',{'id':  evenement.id}) }}"><img src="assets/img/img-10.jpg" alt="Image 10"></a>{{ evenement.nom }}</li>
+
+                {% endfor %}
+                <li class="gap"></li>
+                <li class="gap"></li>
+                <li class="gap"></li>
+            </ul>
+            <div class="cd-fail-message">Aucun résultat trouvé.</div>
+        </section> <!-- cd-gallery -->
+
+
+    </main> <!-- cd-main-content -->
+    <script src="assets/js/jquery-2.1.1.js"></script>
+    <script src="assets/js/jquery.mixitup.min.js"></script>
+    <script src="assets/js/bonplans.js"></script> <!-- Resource jQuery -->
+{% endblock %}

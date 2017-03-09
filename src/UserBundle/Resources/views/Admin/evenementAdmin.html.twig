@@ -1,0 +1,106 @@
+{% extends "::layout.html.twig" %}
+{% block titre %}
+    {{ parent() }} Administration
+{% endblock %}
+{% block contenu %}
+
+    <h1><span class=""></span> Événements </h1>
+
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#evenement" data-toggle="tab">Événements</a></li>
+        <li><a href="#ajoutevenement" data-toggle="tab">Ajouter un événement</a></li>
+
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="evenement">
+            <table class="table ">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Lieu</th>
+                    <th>Participants</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for evenement in evenements %}
+                    <tr>
+                        <td> <a href="{{ path("evenement_view", { 'id': evenement.id })}}">{{ evenement.nom }}</a></td>
+                        <td>{{ evenement.dateHeure | date("d/m/Y à H:i") }}</td>
+                        <td>{{ evenement.lieu.info }}</td>
+                        <td> {{ evenement.participants|length }}</td>
+                        <td><a href="{{ path('evenement_edit',{'id':evenement.id}) }}"
+                               class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('evenement_delete', {'id':evenement.id}) }}" class="btn btn-danger"
+                               onclick="return confirm('Supprimer??')"><span class="fa fa-trash"></span></a></td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="ajoutevenement">
+            <form action="{{ path("evenement_create")}}" method="post" {{ form_enctype(form) }}>
+
+                <div class="form-group">
+                    {{ form_errors(form.nom) }}
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.contenu) }}
+                    {{ form_label(form.contenu) }}
+                    {{ form_widget(form.contenu) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.dateHeure) }}
+                    {{ form_label(form.dateHeure) }}
+                    {{ form_widget(form.dateHeure) }}
+                </div>
+
+
+
+                {{ form_rest(form) }}
+                <input type="submit" id="submit" value="Valider" name="submit" />
+            </form>
+        </div>
+    </div>
+<p>
+    {{ parent() }}
+</p>
+{%  endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
+
+    <script src="{{ asset("assets/jquery-ui/jquery-ui.min.js") }}"></script>
+    <script src="{{ asset("assets/jquery-ui/datepicker-fr.js") }}"></script>
+
+
+    <script>
+
+
+
+        $('#datepicker').datepicker($.datepicker.regional['fr']);
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd',
+            minDate: '1930-01-01',
+            maxDate: '2017-01-01',
+
+        });
+        afficherCalendrier('fos_user_registration_form_dateNaissance');
+        function afficherCalendrier(idInputDate) {
+            $('#' + idInputDate).datepicker({
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                defaultDate: '1990-01-01'
+            });
+        }
+    </script>
+    <script>
+        CKEDITOR.replace( 'evenement[contenu]' );
+    </script>
+{% endblock %}

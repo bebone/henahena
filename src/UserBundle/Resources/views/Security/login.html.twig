@@ -1,0 +1,26 @@
+{% extends "::layout.html.twig" %}
+{% block titre %} Se connecter {% endblock %}
+
+{% block contenu %}
+    <center>
+    <h1>Ravi de te revoir !</h1>
+
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
+        <div class="form-group">
+        <input type="text" class="form-control" placeholder="E-mail" name="_username" value="{{ last_username }}" required autofocus>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Mot de passe" name="_password" required>
+        </div>
+        
+         <div class="form-group">
+                 Garder ma session active ?
+                 <input type="checkbox" name="_remember_me" value="on">
+         </div>
+        
+        <div class="form-group btn-login">
+        <button class="btn btn-lg btn-primary login" type="submit" class="form-control">Connexion</button>
+        </div>
+    </form>
+    </center>
+{% endblock %}

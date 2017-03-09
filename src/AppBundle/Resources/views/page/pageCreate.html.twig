@@ -1,0 +1,30 @@
+{%  extends "::layout.html.twig" %}
+{% block contenu %}
+<form action="{{ path("page_create")}}" method="post" {{ form_enctype(form) }}>
+
+
+    <div>
+        {{ form_errors(form.titre) }}
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre) }}
+    </div>
+    <div>
+        {{ form_errors(form.contenu) }}
+        {{ form_label(form.contenu) }}
+        {{ form_widget(form.contenu) }}
+    </div>
+
+
+
+    {{ form_rest(form) }}
+    <input type="submit" id="submit" value="VALIDER" name="submit" />
+</form>
+{%  endblock %}
+{% block scripts %}
+{{ parent() }}
+<script src="{{asset('bundles/app/ckeditor/ckeditor.js')}}"></script>
+
+<script>
+    CKEDITOR.replace( 'page_edit[contenu]' );
+</script>
+{% endblock %}

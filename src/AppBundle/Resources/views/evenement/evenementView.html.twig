@@ -1,0 +1,54 @@
+{% extends "::layout.html.twig" %}
+{%  block titre %}
+   {{ evenement.nom}}
+{% endblock %}
+{%  block contenu %}
+    <div class="content">
+        <h1>{{ evenement.nom }}</h1>
+        <h4><span class="fa fa-calendar"></span> le {{evenement.dateHeure|date("d/m/Y à H:i")}}</h4>   
+            {% if isParticipant %}
+            <p><a class="btn btn-success">Je participe</a></p>
+            {%  else %}
+                <p><a class="btn btn-default" href="{{ path('participe_add',{'id':evenement.id}) }}">Participer</a></p>
+                {% endif %}
+
+            </div>
+        
+         <ul class="nav nav-tabs">
+        <li class="active"><a href="#evenement" data-toggle="tab">Événement</a></li>
+        <li><a href="#participants" data-toggle="tab">Participants</a></li>
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="evenement">
+          {{evenement.contenu|html}}
+        </div>
+        <div class="tab-pane fade" id="participants">
+             <table class="table ">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>A rejoint l'évenement</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for participant in evenement.participants %}
+                    <tr>
+                        <td> <a href="{{ path("user_profilof", { 'id': participant.user.id })}}">{{ participant.user.prenom }} {{ participant.user.nom }}</a></td>
+                        <td>{{ participant.dateAjout | date("d/m/Y à H:i") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            {%  endblock %}

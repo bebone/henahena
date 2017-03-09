@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HenaHena | {% block titre %} {% endblock %}</title>
+
+    <!-- CSS -->
+    {% block styles %}
+        {# TODO Certains sont appelés seulement sur l'index#}
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+        <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/font-awesome/css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/flexslider/flexslider.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/form-elements.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/anais.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/media-queries.css')}}">
+    {% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>-->
+    {% block scriptsHead %}
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="{{asset("assets/js/jquery-1.11.1.min.js")}}"></script>
+    {%  endblock %}
+    <![endif]-->
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/ico/apple-touch-icon-57-precomposed.png')}}">
+
+</head>
+
+<body>
+
+<!-- Top menu -->
+<nav class="navbar" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">HenaHena</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/logements">
+                        <i class="fa fa-home"></i><br>Logements
+                    </a>
+                </li>
+                {% if app.user %}
+                <li>
+                    <a href="/home"><i class="fa fa-paper-plane"></i><br>Bon plans </a>
+
+                </li>
+                <li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="/admin"><i class="fa fa-wrench"></i><br>ADMINISTRATION</a>
+                    {% else %}
+                    <a href="/profil"><i class="fa fa-user-circle-o"></i><br>{{ app.user.prenom }}</a>
+                {%  endif %}
+                <li>
+                    <a href="/logout"><i class="fa fa-sign-in"></i><br>Besslama</a>
+                </li>
+                    {%  else %}
+                <li>
+                    <a href="/register"><i class="fa fa-sign-in"></i><br>Aji Tchouf</a>
+                </li>
+                   <li> <a href="/login"><i class="fa fa-user-circle-o"></i><br>Merhba</a></li>
+                    {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main section
+   ================================================== -->
+<div class="content">
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+            <div class="row">
+                <div class="alert alert-info">  {{ flashMessage }} </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% block contenu %}
+        <div id="retour"> <button class="btn-default btn" onClick="history.back()"><span class="fa fa-arrow-left"></span> Retour</button></div>
+{% endblock %}
+
+</div>
+<!-- Footer -->
+<footer>
+    {%  block footer %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 footer-box wow fadeInUp">
+                <h4>À PROPOS</h4>
+                <div class="footer-box-text">
+                    <p>
+                        HenaHena accompagne les étudiants marocains arrivant à Lyon !
+                    </p>
+                    <p>
+                        <a href="/about">En savoir plus...</a></p>
+                </div>
+            </div>
+            <div class="col-sm-3 footer-box wow fadeInDown">
+                <h4></h4>
+                <div class="footer-box-text footer-box-text-subscribe">
+
+                </div>
+            </div>
+            <div class="col-sm-3 footer-box wow fadeInUp">
+
+                <div class="footer-box-text flickr-feed"></div>
+            </div>
+            <div class="col-sm-3 footer-box wow fadeInDown">
+                <h4>HENAHENA</h4>
+                <div class="footer-box-text footer-box-text-contact">
+                   <p><a href="/logements">LOGEMENTS</a></p>
+                    <p><a href="/mentionslegales">MENTIONS LEGALES</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <div class="footer-border"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 footer-copyright wow fadeIn">
+                <p>Copyright 2017 HenaHena - All rights reserved.</p>
+            </div>
+            <div class="col-sm-5 footer-social wow fadeIn">
+               Rejoins-nous sur les réseaux sociaux ! <a href="https://www.facebook.com/Hena-hena-1841642652756025/?__mref=message_bubble" target="_blank"><i class="fa fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</footer>
+
+<!-- Javascript -->
+{%  block scripts %}
+<script src="{{asset("assets/js/bootstrap-hover-dropdown.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.backstretch.min.js")}}"></script>
+<script src="{{asset("assets/js/wow.min.js")}}"></script>
+<script src="{{asset("assets/js/retina-1.1.0.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.magnific-popup.min.js")}}"></script>
+<script src="{{asset("assets/js/jflickrfeed.min.js")}}"></script>
+<script src="{{asset("assets/js/masonry.pkgd.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.ui.map.min.js")}}"></script>
+<script src="{{asset("assets/js/scripts.js")}}"></script>
+<script src="{{asset("assets/bootstrap/js/bootstrap.min.js")}}"></script>
+    <!--<script src="{{asset("http://maps.google.com/maps/api/js?sensor=true")}}"></script>-->
+{%  endblock %}
+</body>
+
+</html>

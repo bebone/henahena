@@ -1,0 +1,196 @@
+{% extends "::layout.html.twig" %}
+{% block titre %}
+    {{ parent() }} Profil
+{% endblock %}
+{% block contenu %}
+
+    <h1><span class="fa fa-user"></span> {{ user.prenom }} {{ user.nom }} </h1>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a aria-expanded="true" href="#info" data-toggle="tab"><span class="fa fa-info-circle"></span> Info</a></li>
+        <li class=""><a aria-expanded="false" href="#evenements" data-toggle="tab"> <span class="fa fa-calendar"></span>
+                Participations aux évenements</a>
+        </li>
+        <li class=""><a aria-expanded="false" href="#bonsplans" data-toggle="tab"><span
+                    class="fa fa-paper-plane"></span> Bons plans créés</a></li>
+                {% if app.user == user %}
+            <li class=""><a aria-expanded="false" href="#ajoutbonplan" data-toggle="tab"><span
+                        class="fa fa-plus"></span> Ajouter un bon plan</a></li>
+                {% endif %}
+                {#{% if app.user == user %}#}
+                {#<li class=""><a aria-expanded="false" href="#settings" data-toggle="tab">Changer son mot de passe</a></li>#}
+                {#{% endif %}#}
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="info">
+            <h2>{{ user.statut }} ({{ user.Age }} ans)
+            {% if   user.sexe == 'H' %}
+                <span class="fa fa-male"></span>
+                {% elseif user.sexe == 'F' %}
+                    <span class="fa fa-female"></span>
+                    {% else %}
+                        {% endif%}
+            
+            </h2>
+           
+        </div>
+        <div class="tab-pane fade" id="evenements">
+
+            {% if user.participations is empty %}
+                Aucune participation à afficher.
+            {% else %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Événement</th>
+                            <th>Date</th>
+                            <th>Lieu</th>
+                              {% if app.user == user %}
+                            <th>Action</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for participation in user.participations %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('evenement_view',{'id':participation.evenement.id}) }}">{{ participation.evenement.nom }}</a>
+                                </td>
+                                <td>{{ participation.evenement.dateHeure|date("d/m/Y à H:i")  }}</td>
+                                <td>{{ participation.evenement.lieu.info }}</td>
+                                {% if app.user == user %}
+                                    <td><a class="btn btn-danger" href="{{ path('participe_delete', {'evenementId':participation.evenement.id,'participantId':participation.id}) }}" onclick="return confirm('Annuler ma participation??')">Annuler</a></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+
+        </div>
+        <div class="tab-pane fade" id="bonsplans">
+            {% if user.bonsplans is empty %}
+                Aucun bon plan à afficher.
+            {% else %}
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Bon plan</th>
+                            <th>catégorie</th>
+                            <th>dernière modification</th>
+                                {% if app.user == user %}
+                                <th>Actions</th>
+                                {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bonplan in user.bonsplans %}
+                            <tr>
+                                <td><a href="{{ path('bonplan_view',{'id':bonplan.id}) }}">{{ bonplan.titre }}</a></td>
+                                <td>{{ bonplan.categorie.nom }}</td>
+                                <td>{{ bonplan.dateModif | date("d/m/Y à H:i") }}</td>
+                                {% if app.user == user %}
+                                    <td><a href="{{ path('bonplan_edit',{'id':bonplan.id}) }}"
+                                           class="btn btn-primary">Modifier</a>
+                                        <a href="{{ path('bonplan_delete', {'id':bonplan.id}) }}" class="btn btn-danger"
+                                           onclick="return confirm('Supprimer??')"><span class="fa fa-trash"></span></a></td>
+                                        {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+
+
+
+        </div>
+        {% if app.user == user %}
+            <div class="tab-pane fade" id="ajoutbonplan">
+                <form action="{{ path("bonsplans_create") }}" method="post" {{ form_enctype(form) }}>
+
+
+                    <div>
+                        {{ form_errors(form.titre) }}
+                        {{ form_label(form.titre) }}
+                        {{ form_widget(form.titre) }}
+                    </div>
+                    <div>
+                        {{ form_errors(form.categorie) }}
+                        {{ form_label(form.categorie) }}
+                        {{ form_widget(form.categorie) }}
+                    </div>
+                    <div>
+                        {{ form_errors(form.contenu) }}
+                        {{ form_label(form.contenu) }}
+                        {{ form_widget(form.contenu) }}
+                    </div>
+
+                    <div style="display:none" class="colocation">
+                        {{ form_errors(form.superficie) }}
+                        {{ form_label(form.superficie) }}
+                        {{ form_widget(form.superficie) }}
+                    </div>
+
+                    <div style="display:none" class="colocation">
+                        {{ form_errors(form.loyer) }}
+                        {{ form_label(form.loyer) }}
+                        {{ form_widget(form.loyer) }}
+                    </div>
+
+                    <div style="display:none" class="covoiturage">
+                        {{ form_errors(form.prix) }}
+                        {{ form_label(form.prix) }}
+                        {{ form_widget(form.prix) }}
+                    </div>
+
+                    <div style="display:none" class="covoiturage">
+                        {{ form_errors(form.depart) }}
+                        {{ form_label(form.depart) }}
+                        {{ form_widget(form.depart) }}
+                    </div>
+
+                    <div style="display:none" class="covoiturage">
+                        {{ form_errors(form.arrivee) }}
+                        {{ form_label(form.arrivee) }}
+                        {{ form_widget(form.arrivee) }}
+                    </div>
+
+
+                    {{ form_rest(form) }}
+                    <input type="submit" id="submit" value="VALIDER" name="submit"/>
+                </form>
+                <p>{{ parent() }}</p>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/ckeditor/ckeditor.js') }}"></script>
+    <script>
+
+                                           CKEDITOR.replace('bonplan_create[contenu]');
+
+                                           $('#bonplan_create_categorie').on('change', (function () {
+
+                                               // alert('toto');
+                                               if ($('#bonplan_create_categorie option:selected').val() == 1) {
+                                                   $(".covoiturage").fadeIn("slow");
+                                                   $(".colocation").fadeOut("slow");
+
+                                               } else if ($('#bonplan_create_categorie option:selected').val() == 2) {
+                                                   $(".covoiturage").fadeOut("slow");
+                                                   $(".colocation").fadeIn("slow");
+                                               } else {
+                                                   $(".covoiturage").fadeOut("slow");
+                                                   $(".colocation").fadeOut("slow");
+                                               }
+                                           }));
+
+    </script>
+{% endblock %}
